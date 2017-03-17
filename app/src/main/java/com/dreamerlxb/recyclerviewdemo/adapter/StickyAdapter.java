@@ -19,12 +19,12 @@ import java.util.List;
  * 分组
  */
 
-public class SectionAdapter extends RecyclerView.Adapter {
+public class StickyAdapter extends RecyclerView.Adapter {
     public static final int ITEM_TYPE_SECTION = 2222;
     public static final int ITEM_TYPE_NORMAL = 1111;
-    LayoutInflater inflater;
+    private LayoutInflater inflater;
 
-    public SectionAdapter(Context context, List<SectionEntity> dataList) {
+    public StickyAdapter(Context context, List<SectionEntity> dataList) {
         this.dataList = dataList;
         this.inflater = LayoutInflater.from(context);
     }
@@ -62,42 +62,6 @@ public class SectionAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return dataList.size();
-    }
-
-    // Adapter 吸附到 RecyclerView 时
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-        RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
-        if (manager instanceof GridLayoutManager) {
-            final GridLayoutManager gridLayoutManager = (GridLayoutManager) manager;
-            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int position) {
-                    if (isSection(position)) {
-                        return gridLayoutManager.getSpanCount();
-                    }
-                    return 1;
-                }
-            });
-        }
-    }
-
-    /**
-     * 添加支持StaggeredGridLayoutManager
-     * @param holder
-     */
-    @Override
-    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
-        super.onViewAttachedToWindow(holder);
-        ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-        if (null != layoutParams && layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
-            int layoutPos = holder.getLayoutPosition();
-            if (isSection(layoutPos)) {
-                StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) layoutParams;
-                params.setFullSpan(true);
-            }
-        }
     }
 
     /**

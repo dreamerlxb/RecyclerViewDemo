@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.adapter.SectionAdapter;
+import com.dreamerlxb.recyclerviewdemo.adapter.StickyAdapter;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
 
 public class StickyActivity extends AppCompatActivity {
@@ -41,9 +44,11 @@ public class StickyActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.sticky_rv);
         stickyView = findViewById(R.id.sticky_header);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        final SectionAdapter adapter = new SectionAdapter(this, MyData.getSectionGridData2());
+        final StickyAdapter adapter = new StickyAdapter(this, MyData.getSectionGridData2());
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -55,8 +60,6 @@ public class StickyActivity extends AppCompatActivity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-//                ((LinearLayoutManager)recyclerView.getLayoutManager()).
-//                Log.i("Sticky", dx + "    " + dy);
                 if (adapter.isSection(rvCurrentPos + 1)) {
                     View view = linearLayoutManager.findViewByPosition(rvCurrentPos + 1);
                     if (view != null) {
