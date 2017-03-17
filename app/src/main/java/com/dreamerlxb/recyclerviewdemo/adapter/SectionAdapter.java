@@ -108,6 +108,9 @@ public class SectionAdapter extends RecyclerView.Adapter {
      * @return
      */
     public boolean isSection(int pos) {
+        if (pos >= dataList.size()) {
+            return false;
+        }
        return dataList.get(pos).isHeader();
     }
 

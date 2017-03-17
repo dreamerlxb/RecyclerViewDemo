@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.dreamerlxb.recyclerviewdemo.StickyActivity"
+    tools:showIn="@layout/activity_sticky">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sticky_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include
+        android:id="@+id/sticky_header"
+        layout="@layout/section_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/sticky_header"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@android:color/holo_blue_light"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="Sticky Header"-->
+        <!--android:textSize="16sp" />-->
+</FrameLayout>

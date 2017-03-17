@@ -6,4 +6,5 @@
     <string name="title_me">Me</string>
     <string name="title_activity_header_and_footer">HeaderAndFooterActivity</string>
     <string name="title_activity_section">SectionActivity</string>
+    <string name="title_activity_sticky">StickyActivity</string>
 </resources>

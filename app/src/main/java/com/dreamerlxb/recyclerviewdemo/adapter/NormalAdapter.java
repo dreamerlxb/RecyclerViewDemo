@@ -15,25 +15,12 @@ import java.util.List;
  * Created by sxb on 2017/3/15.
  */
 
-public class NormalAdapter extends RecyclerView.Adapter implements View.OnClickListener {
+public class NormalAdapter extends RecyclerView.Adapter {
     public static final int ITEM_TYPE_NORMAL = 1000;
     private Context context;
 
     private List<String> dataList;
 
-    private NormalItemClickListener itemClickListener;
-
-    public NormalItemClickListener getItemClickListener() {
-        return itemClickListener;
-    }
-
-    public void setItemClickListener(NormalItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
-
-    public interface NormalItemClickListener {
-        void onItemClickListener(int position);
-    }
 
     public NormalAdapter(Context context, List<String> dataList) {
         this.context = context;
@@ -43,7 +30,6 @@ public class NormalAdapter extends RecyclerView.Adapter implements View.OnClickL
     @Override
     public NormalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.normal_item, null);
-        view.setOnClickListener(this);
         return new NormalViewHolder(view);
     }
 
@@ -64,12 +50,6 @@ public class NormalAdapter extends RecyclerView.Adapter implements View.OnClickL
         return ITEM_TYPE_NORMAL;
     }
 
-    @Override
-    public void onClick(View view) {
-        if (itemClickListener != null) {
-            itemClickListener.onItemClickListener((Integer) view.getTag());
-        }
-    }
 
     public class NormalViewHolder extends RecyclerView.ViewHolder {
 
