@@ -4,4 +4,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_me">Me</string>
+    <string name="title_activity_header_and_footer">HeaderAndFooterActivity</string>
+    <string name="title_activity_section">SectionActivity</string>
 </resources>
