@@ -33,6 +33,7 @@ public class StickyAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
+//        return ITEM_TYPE_NORMAL;
         SectionEntity se = dataList.get(position);
         return se.isHeader() ? ITEM_TYPE_SECTION : ITEM_TYPE_NORMAL;
     }
@@ -40,9 +41,9 @@ public class StickyAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE_NORMAL) {
-            return new ItemViewHolder(inflater.inflate(R.layout.normal_item, null));
+            return new ItemViewHolder(inflater.inflate(R.layout.sticky_normal_item, parent, false));
         } else if (viewType == ITEM_TYPE_SECTION) {
-            return new SectionViewHolder(inflater.inflate(R.layout.section_item, null));
+            return new SectionViewHolder(inflater.inflate(R.layout.sticky_section_item, parent, false));
         }
         return null;
     }
@@ -82,7 +83,7 @@ public class StickyAdapter extends RecyclerView.Adapter {
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.rv_item_txt);
+            textView = (TextView) itemView.findViewById(R.id.sticky_normal_item_txt);
         }
     }
 
@@ -92,7 +93,7 @@ public class StickyAdapter extends RecyclerView.Adapter {
 
         public SectionViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.section_txt);
+            textView = (TextView) itemView.findViewById(R.id.sticky_section_item_txt);
         }
     }
 }

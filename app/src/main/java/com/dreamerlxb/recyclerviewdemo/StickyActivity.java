@@ -49,8 +49,8 @@ public class StickyActivity extends AppCompatActivity {
         stickyAdapter = new StickyAdapter(this, MyData.getSectionGridData2());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 //        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        recyclerView.setAdapter(stickyAdapter);
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(stickyAdapter);
         recyclerView.addOnItemTouchListener(new RecyclerViewItemListener(recyclerView) {
             @Override
             public void onClick(View view, int position) {

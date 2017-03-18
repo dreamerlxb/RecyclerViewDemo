@@ -15,7 +15,7 @@
 
     <include
         android:id="@+id/sticky_header"
-        layout="@layout/section_item"
+        layout="@layout/sticky_section_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
