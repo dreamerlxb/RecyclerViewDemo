@@ -47,7 +47,7 @@ public class SectionDecorActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        SectionItemDecoration sectionItemDecoration = new SectionItemDecoration(new SectionItemDecoration.SectionItemDecorationCb() {
+        SectionItemDecoration sectionItemDecoration = new SectionItemDecoration(getResources().getDimensionPixelSize(R.dimen.sectioned_top), new SectionItemDecoration.SectionItemDecorationCb() {
             @Override
             public int getSectionId(int position) {
                 return sectionDecorAdapter.getSectionForPosition(position);

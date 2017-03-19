@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.R;
+import com.dreamerlxb.recyclerviewdemo.entity.SectionDecorEntity;
 import com.dreamerlxb.recyclerviewdemo.entity.SectionEntity;
 import com.dreamerlxb.recyclerviewdemo.entity.StickySectionEntityImpl;
 
@@ -43,7 +44,7 @@ public class SectionDecorAdapter<T extends SectionEntity> extends RecyclerView.A
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         T se = dataList.get(position);
-        StickySectionEntityImpl ssei = (StickySectionEntityImpl) se;
+        SectionDecorEntity ssei = (SectionDecorEntity) se;
         ItemViewHolder svh = (ItemViewHolder) holder;
         svh.textView.setText(ssei.getTitle());
     }
