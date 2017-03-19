@@ -18,12 +18,12 @@ import java.util.List;
  * 分组
  */
 
-public class StickyAdapter <T extends SectionEntity> extends RecyclerView.Adapter{
+public class SectionDecorAdapter<T extends SectionEntity> extends RecyclerView.Adapter {
     public static final int ITEM_TYPE_SECTION = 2222;
     public static final int ITEM_TYPE_NORMAL = 1111;
-    private LayoutInflater inflater;
+    LayoutInflater inflater;
 
-    public StickyAdapter(Context context, List<T> dataList) {
+    public SectionDecorAdapter(Context context, List<T> dataList) {
         this.dataList = dataList;
         this.inflater = LayoutInflater.from(context);
     }
@@ -32,47 +32,25 @@ public class StickyAdapter <T extends SectionEntity> extends RecyclerView.Adapte
 
     @Override
     public int getItemViewType(int position) {
-        T se = dataList.get(position);
-        return se.isSection() ? ITEM_TYPE_SECTION : ITEM_TYPE_NORMAL;
+        return ITEM_TYPE_NORMAL;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == ITEM_TYPE_NORMAL) {
-            return new ItemViewHolder(inflater.inflate(R.layout.sticky_normal_item, parent, false));
-        } else if (viewType == ITEM_TYPE_SECTION) {
-            return new SectionViewHolder(inflater.inflate(R.layout.sticky_section_item, parent, false));
-        }
-        return null;
+        return new ItemViewHolder(inflater.inflate(R.layout.sticky_normal_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        StickySectionEntityImpl se = (StickySectionEntityImpl) dataList.get(position);
-        if (se.isSection()) {
-            SectionViewHolder svh = (SectionViewHolder) holder;
-            svh.textView.setText(se.getTitle());
-        } else {
-            ItemViewHolder svh = (ItemViewHolder) holder;
-            svh.textView.setText(se.getTitle());
-        }
+        T se = dataList.get(position);
+        StickySectionEntityImpl ssei = (StickySectionEntityImpl) se;
+        ItemViewHolder svh = (ItemViewHolder) holder;
+        svh.textView.setText(ssei.getTitle());
     }
 
     @Override
     public int getItemCount() {
         return dataList.size();
-    }
-
-    /**
-     * 判断是否为section
-     * @param pos
-     * @return
-     */
-    public boolean isSection(int pos) {
-        if (pos >= dataList.size()) {
-            return false;
-        }
-       return dataList.get(pos).isSection();
     }
 
     public T getItemObject(int pos) {
@@ -97,13 +75,4 @@ public class StickyAdapter <T extends SectionEntity> extends RecyclerView.Adapte
         }
     }
 
-    public class SectionViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView textView;
-
-        public SectionViewHolder(View itemView) {
-            super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.sticky_section_item_txt);
-        }
-    }
 }

@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.dreamerlxb.recyclerviewdemo.adapter.MainAdapter;
-import com.dreamerlxb.recyclerviewdemo.adapter.NormalAdapter;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
 
 public class MainActivity extends AppCompatActivity implements MainAdapter.NormalItemClickListener {
@@ -45,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Norma
             case 2:
                 Intent intent3 = new Intent(this, StickyActivity.class);
                 startActivity(intent3);
+                break;
+            case 3:
+                Intent intent4 = new Intent(this, SectionDecorActivity.class);
+                startActivity(intent4);
                 break;
             default:
                 break;

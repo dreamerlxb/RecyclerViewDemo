@@ -1,4 +1,4 @@
-package com.dreamerlxb.recyclerviewdemo.divider;
+package com.dreamerlxb.recyclerviewdemo.decoration;
 
 import android.content.Context;
 import android.content.res.TypedArray;

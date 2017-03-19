@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.R;
-import com.dreamerlxb.recyclerviewdemo.entity.SectionEntity;
+import com.dreamerlxb.recyclerviewdemo.entity.SectionEntityImpl;
 
 import java.util.List;
 
@@ -24,17 +24,17 @@ public class SectionAdapter extends RecyclerView.Adapter {
     public static final int ITEM_TYPE_NORMAL = 1111;
     LayoutInflater inflater;
 
-    public SectionAdapter(Context context, List<SectionEntity> dataList) {
+    public SectionAdapter(Context context, List<SectionEntityImpl> dataList) {
         this.dataList = dataList;
         this.inflater = LayoutInflater.from(context);
     }
 
-    private List<SectionEntity> dataList;
+    private List<SectionEntityImpl> dataList;
 
     @Override
     public int getItemViewType(int position) {
-        SectionEntity se = dataList.get(position);
-        return se.isHeader() ? ITEM_TYPE_SECTION : ITEM_TYPE_NORMAL;
+        SectionEntityImpl se = dataList.get(position);
+        return se.isSection() ? ITEM_TYPE_SECTION : ITEM_TYPE_NORMAL;
     }
 
     @Override
@@ -49,8 +49,8 @@ public class SectionAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        SectionEntity se = dataList.get(position);
-        if (se.isHeader()) {
+        SectionEntityImpl se = dataList.get(position);
+        if (se.isSection()) {
             SectionViewHolder svh = (SectionViewHolder) holder;
             svh.textView.setText(se.getTitle());
         } else {
@@ -109,7 +109,7 @@ public class SectionAdapter extends RecyclerView.Adapter {
         if (pos >= dataList.size()) {
             return false;
         }
-       return dataList.get(pos).isHeader();
+       return dataList.get(pos).isSection();
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {

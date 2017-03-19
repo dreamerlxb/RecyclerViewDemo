@@ -29,6 +29,10 @@
         <activity
             android:name=".StickyActivity"
             android:label="@string/title_activity_sticky"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SectionDecorActivity"
+            android:label="@string/title_activity_section_decoration"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

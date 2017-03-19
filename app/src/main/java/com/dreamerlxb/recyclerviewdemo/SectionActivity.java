@@ -7,15 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.dreamerlxb.recyclerviewdemo.adapter.HeaderAndFooterAdapter;
-import com.dreamerlxb.recyclerviewdemo.adapter.NormalAdapter;
 import com.dreamerlxb.recyclerviewdemo.adapter.SectionAdapter;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
-import com.dreamerlxb.recyclerviewdemo.divider.DividerGridItemDecoration;
+import com.dreamerlxb.recyclerviewdemo.decoration.DividerGridItemDecoration;
 
 public class SectionActivity extends AppCompatActivity {
     private RecyclerView recyclerView;

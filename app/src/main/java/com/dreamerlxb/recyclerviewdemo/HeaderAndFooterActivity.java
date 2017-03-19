@@ -14,7 +14,7 @@ import android.view.View;
 import com.dreamerlxb.recyclerviewdemo.adapter.HeaderAndFooterAdapter;
 import com.dreamerlxb.recyclerviewdemo.adapter.NormalAdapter;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
-import com.dreamerlxb.recyclerviewdemo.divider.DividerGridItemDecoration;
+import com.dreamerlxb.recyclerviewdemo.decoration.DividerGridItemDecoration;
 
 public class HeaderAndFooterActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
