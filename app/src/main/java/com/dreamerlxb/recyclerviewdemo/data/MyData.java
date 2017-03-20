@@ -18,17 +18,7 @@ public class MyData {
         list.add("Section");
         list.add("Sticky");
         list.add("Section Decoration");
-        list.add("RecyclerView添加Header和Footer");
-        list.add("RecyclerView添加Header和Footer");
-        list.add("RecyclerView添加Header和Footer");
-        list.add("RecyclerView添加Header和Footer");
-        list.add("RecyclerView添加Header和Footer");
-        list.add("RecyclerView添加Header和Footer");
-        list.add("RecyclerView添加Header和Footer");
-        list.add("RecyclerView添加Header和Footer");
-
-        list.add("RecyclerView添加Header和Footer");
-        list.add("RecyclerView添加Header和Footer");
+        list.add("Load More");
 
         return list;
     }
@@ -54,7 +44,6 @@ public class MyData {
     }
 
     public static List<List<String>> getSectionGridData() {
-//        String [] strs = {"dsdsdcscsv", "sddsvsdvsdfddvsdvvsv", "sddsvsdvsdvsdsewfwfsdvvsv", "svsdvdvsdvvsv"};
         List<List<String>> list = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             int a = (int) (Math.random() * 10);
