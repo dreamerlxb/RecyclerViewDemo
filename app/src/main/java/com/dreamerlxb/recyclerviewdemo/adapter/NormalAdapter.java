@@ -21,15 +21,18 @@ public class NormalAdapter extends RecyclerView.Adapter {
 
     private List<String> dataList;
 
-
     public NormalAdapter(Context context, List<String> dataList) {
         this.context = context;
         this.dataList = dataList;
     }
 
+    public void addItems(List<String> list) {
+        dataList.addAll(list);
+    }
+
     @Override
     public NormalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.normal_item, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.normal_item, parent, false);
         return new NormalViewHolder(view);
     }
 

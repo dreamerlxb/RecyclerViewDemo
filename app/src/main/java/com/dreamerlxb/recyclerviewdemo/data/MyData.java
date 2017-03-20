@@ -25,7 +25,7 @@ public class MyData {
 
     public static List<String> getTestData() {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 10; i++) {
             list.add("Test" + i );
         }
 
@@ -35,7 +35,7 @@ public class MyData {
     public static List<String> getTestGridData() {
         String [] strs = {"dsdsdcscsv", "sddsvsdvsdfddvsdvvsv", "sddsvsdvsdvsdsewfwfsdvvsv", "svsdvdvsdvvsv"};
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             int a = (int) (Math.random() * strs.length);
             list.add("Test" + i + strs[a]);
         }

@@ -42,10 +42,8 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
-//        Log.i("State",  state.getTargetScrollPosition() + "");
         int itemCount = state.getItemCount();
         int childCount = parent.getChildCount();
-//        Log.i("childCount",  childCount + "");
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
@@ -61,14 +59,13 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
 
             int viewBottom = view.getBottom();
             float textY = Math.max(topGap, view.getTop());
-            if (position + 1 < itemCount) { // 下一个和当前不一样移动当前
-//                Log.i("Tag", "" + itemCount);
-                long nextSectionId = stickyDecorationCb.getSectionId(position + 1);
+            if (position + 1 < itemCount) { // 如果position是最后一个，就不需要判断了
+                // 下一个和当前不一样移动当前
+                int nextSectionId = stickyDecorationCb.getSectionId(position + 1);
                 if (nextSectionId != sectionId && viewBottom < textY ) { // 组内最后一个view进入了header
                     textY = viewBottom;
                 }
             }
-//            Log.i("Section textY = " , sectionId + "   " +textY );
             c.drawRect(left, textY - topGap, right, textY, sectionPaint);
             // 计算 text的 baseline
             float baselineY = textY - topGap + (topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
