@@ -16,6 +16,7 @@ import com.dreamerlxb.recyclerviewdemo.adapter.StickyAdapter;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
 import com.dreamerlxb.recyclerviewdemo.decoration.DividerGridItemDecoration;
 import com.dreamerlxb.recyclerviewdemo.decoration.SectionItemDecoration;
+import com.dreamerlxb.recyclerviewdemo.decoration.StickyItemDecoration;
 
 public class SectionDecorActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -47,14 +48,21 @@ public class SectionDecorActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        SectionItemDecoration sectionItemDecoration = new SectionItemDecoration(getResources().getDimensionPixelSize(R.dimen.sectioned_top), new SectionItemDecoration.SectionItemDecorationCb() {
+//        SectionItemDecoration sectionItemDecoration = new SectionItemDecoration(getResources().getDimensionPixelSize(R.dimen.sectioned_top), new SectionItemDecoration.SectionItemDecorationCb() {
+//            @Override
+//            public int getSectionId(int position) {
+//                return sectionDecorAdapter.getSectionForPosition(position);
+//            }
+//        });
+//        recyclerView.addItemDecoration(sectionItemDecoration);
+
+        StickyItemDecoration stickyItemDecoration = new StickyItemDecoration(getResources().getDimensionPixelSize(R.dimen.sectioned_top), new StickyItemDecoration.StickyItemDecorationCb() {
             @Override
             public int getSectionId(int position) {
                 return sectionDecorAdapter.getSectionForPosition(position);
             }
         });
-
-        recyclerView.addItemDecoration(sectionItemDecoration);
+        recyclerView.addItemDecoration(stickyItemDecoration);
     }
 
 }
