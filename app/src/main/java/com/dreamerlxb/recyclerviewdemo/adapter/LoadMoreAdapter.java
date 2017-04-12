@@ -1,12 +1,16 @@
 package com.dreamerlxb.recyclerviewdemo.adapter;
 
 import android.content.Context;
-import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.dreamerlxb.recyclerviewdemo.data.MyData;
+
+import java.util.List;
 
 /**
  * Created by sxb on 2017/3/15.
@@ -15,30 +19,83 @@ import android.view.ViewGroup;
 public class LoadMoreAdapter extends RecyclerView.Adapter {
     public static final int ITEM_TYPE_LOAD_MORE = 7777;
     private Context context;
+//    private RecyclerView recyclerView;
     private NormalAdapter adapter;
-    private View loadMoreView;
+    private View loadingMoreView;
+    private View loadMoreFailedView;
+    private View loadMoreNoDataView;
+    private LoadMoreListener loadMoreListener;
+
+    private boolean hasMore; // 是否还有更多数据
 
     public interface LoadMoreListener {
         void onLoadMore();
     }
 
-    public LoadMoreAdapter(Context context) {
-        this.context = context;
+    public void setLoadMoreListener(LoadMoreListener loadMoreListener) {
+        this.loadMoreListener = loadMoreListener;
     }
 
-    public LoadMoreAdapter(Context context, NormalAdapter adapter) {
-        this(context);
+    private RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            if(newState == RecyclerView.SCROLL_STATE_IDLE) { // 当recycleView滚动停止时，判断是否到最底部，若到了最底部直接加载更多
+                if (!recyclerView.canScrollVertically(1) ) { //判断垂直方向上可否向上移动
+                    // 在这加载更多数据 (数据已经加载完成)
+                    if (hasMore) {
+                        loadMoreListener.onLoadMore();
+                    } else {
+                        notifyItemChanged(getItemCount() - 1);
+                        recyclerView.removeOnScrollListener(this);
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+        }
+    };
+
+    public LoadMoreAdapter(RecyclerView recyclerView, NormalAdapter adapter) {
+        this.context = recyclerView.getContext();
         this.adapter = adapter;
+        this.hasMore = true;
+        recyclerView.addOnScrollListener(onScrollListener);
     }
 
-    public void setLoadMoreView(View view) {
-        this.loadMoreView = view;
+    public void setLoadingMoreView(View view) {
+        this.loadingMoreView = view;
+    }
+
+    public void setLoadMoreFailedView(View loadMoreFailedView) {
+        this.loadMoreFailedView = loadMoreFailedView;
+    }
+
+    public void setLoadMoreNoDataView(View loadMoreNoDataView) {
+        this.loadMoreNoDataView = loadMoreNoDataView;
+    }
+
+    public void loadMoreFailed() {
+
+    }
+
+    public void loadMoreFinish(boolean hasMore) {
+        this.hasMore = hasMore;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE_LOAD_MORE) { // load more
-            return new LoadMoreViewHolder(loadMoreView);
+            if (hasMore) {
+                Log.i("=======", hasMore+"");
+                return new LoadMoreViewHolder(loadingMoreView);
+            } else {
+                Log.i("=======", hasMore+"");
+                return new LoadMoreViewHolder(loadMoreNoDataView);
+            }
         }
         return adapter.createViewHolder(parent, viewType);
     }
@@ -77,7 +134,6 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
             }
         }
     }
-
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {

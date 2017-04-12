@@ -89,6 +89,7 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
 //            int spanSize = ((GridLayoutManager) layoutManager).getSpanSizeLookup().getSpanSize(itemAdapterPos);
 //            Log.i("==spanSize==", spanSize + "");
 //            Log.i("==spanCount==", spanCount + "");
+//            layoutManager.
             if ((itemLayoutPos + 1) % spanCount == 0) { // 如果是最后一列，则不需要绘制右边
                 return true;
             }
