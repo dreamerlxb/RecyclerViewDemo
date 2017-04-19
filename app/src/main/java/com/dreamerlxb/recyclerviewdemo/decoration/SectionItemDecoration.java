@@ -18,7 +18,6 @@ import com.dreamerlxb.recyclerviewdemo.R;
 public class SectionItemDecoration extends RecyclerView.ItemDecoration {
     public interface SectionItemDecorationCb {
         int getSectionId(int position);
-//        Object getObjectForSection();
     }
 
     public void setSectionDecorationCb(SectionItemDecorationCb sectionDecorationCb) {
@@ -29,7 +28,6 @@ public class SectionItemDecoration extends RecyclerView.ItemDecoration {
     private Paint sectionPaint;
     private Paint textPaint;
     private int topGap;
-//    private Paint.FontMetrics fontMetrics;
 
 
     public SectionItemDecoration(int topGap, SectionItemDecorationCb sectionDecorationCb) {
@@ -43,8 +41,6 @@ public class SectionItemDecoration extends RecyclerView.ItemDecoration {
         textPaint.setTextSize(80);
         textPaint.setColor(Color.BLACK);
         textPaint.setTextAlign(Paint.Align.LEFT);
-//        fontMetrics = new Paint.FontMetrics();
-//        textPaint.getFontMetrics(fontMetrics);
         this.topGap = topGap ;//32dp
     }
 
@@ -83,7 +79,7 @@ public class SectionItemDecoration extends RecyclerView.ItemDecoration {
                 * (tg- b + t + b -t)/2 + top
                 * */
                 float baselineY = top + (topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
-                c.drawText("Sectgion" + sectionId, left, baselineY , textPaint);//绘制文本
+                c.drawText("Section" + sectionId, left, baselineY , textPaint);//绘制文本
             }
         }
     }

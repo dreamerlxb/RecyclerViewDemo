@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.dreamerlxb.recyclerviewdemo.HeaderAndFooterActivity"
-    tools:showIn="@layout/activity_header_and_footer">
+    tools:context="com.dreamerlxb.recyclerviewdemo.LoadMoreActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/header_footer_rv"
+        android:id="@+id/load_more_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="8dp"

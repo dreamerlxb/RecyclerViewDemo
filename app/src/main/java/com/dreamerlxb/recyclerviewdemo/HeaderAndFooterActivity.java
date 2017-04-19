@@ -36,7 +36,7 @@ public class HeaderAndFooterActivity extends AppCompatActivity {
         });
 
         recyclerView = (RecyclerView) findViewById(R.id.header_footer_rv);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerGridItemDecoration(this));

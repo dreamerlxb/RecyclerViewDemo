@@ -38,7 +38,7 @@ public class MainAdapter extends RecyclerView.Adapter implements View.OnClickLis
 
     @Override
     public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.main_item, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.main_item, parent, false);
         view.setOnClickListener(this);
         return new MainViewHolder(view);
     }

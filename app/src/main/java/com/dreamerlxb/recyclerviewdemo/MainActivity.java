@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Norma
                 Intent intent4 = new Intent(this, SectionDecorActivity.class);
                 startActivity(intent4);
                 break;
+            case 4:
+                Intent intent5 = new Intent(this, LoadMoreActivity.class);
+                startActivity(intent5);
+                break;
             default:
                 break;
         }
