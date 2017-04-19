@@ -12,15 +12,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.dreamerlxb.recyclerviewdemo.adapter.StickyAdapter;
+import com.dreamerlxb.recyclerviewdemo.adapter.StickySectionAdapter;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
 import com.dreamerlxb.recyclerviewdemo.entity.StickySectionEntityImpl;
 import com.dreamerlxb.recyclerviewdemo.listener.RecyclerViewItemListener;
 
-public class StickyActivity extends AppCompatActivity {
+public class StickySectionActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-    private StickyAdapter stickyAdapter;
+    private StickySectionAdapter stickySectionAdapter;
     private View stickyView;
     private TextView stickyTv;
 
@@ -47,11 +47,11 @@ public class StickyActivity extends AppCompatActivity {
         stickyView = findViewById(R.id.sticky_header);
         stickyTv = (TextView) stickyView.findViewById(R.id.sticky_section_item_txt);
         linearLayoutManager = new LinearLayoutManager(this);
-        stickyAdapter = new StickyAdapter(this, MyData.getData2());
+        stickySectionAdapter = new StickySectionAdapter(this, MyData.getData2());
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 //        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(stickyAdapter);
+        recyclerView.setAdapter(stickySectionAdapter);
         recyclerView.addOnItemTouchListener(new RecyclerViewItemListener(recyclerView) {
             @Override
             public void onClick(View view, int position) {
@@ -70,7 +70,7 @@ public class StickyActivity extends AppCompatActivity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (stickyAdapter.isSection(rvCurrentPos + 1)) {
+                if (stickySectionAdapter.isSection(rvCurrentPos + 1)) {
                     View view = linearLayoutManager.findViewByPosition(rvCurrentPos + 1);
                     if (view != null) {
                         if(view.getTop() < stickyHeaderHeight) {
@@ -92,8 +92,8 @@ public class StickyActivity extends AppCompatActivity {
     }
 
     private void updateStickyHeader(int pos) {
-        int sec = stickyAdapter.getSectionForPosition(pos);
-        Object se = stickyAdapter.getItemObject(sec);
+        int sec = stickySectionAdapter.getSectionForPosition(pos);
+        Object se = stickySectionAdapter.getItemObject(sec);
         if (se != null) {
             StickySectionEntityImpl ssei = (StickySectionEntityImpl) se;
             stickyTv.setText(ssei.getTitle());

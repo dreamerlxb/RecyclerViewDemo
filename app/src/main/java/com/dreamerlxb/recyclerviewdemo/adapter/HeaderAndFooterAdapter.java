@@ -130,7 +130,6 @@ public class HeaderAndFooterAdapter extends RecyclerView.Adapter {
     }
 
     public class HeaderAndFooterViewHolder extends RecyclerView.ViewHolder {
-
         public HeaderAndFooterViewHolder(View itemView) {
             super(itemView);
         }

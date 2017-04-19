@@ -9,13 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.adapter.SectionDecorAdapter;
-import com.dreamerlxb.recyclerviewdemo.adapter.StickyAdapter;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
-import com.dreamerlxb.recyclerviewdemo.decoration.DividerGridItemDecoration;
-import com.dreamerlxb.recyclerviewdemo.decoration.SectionItemDecoration;
 import com.dreamerlxb.recyclerviewdemo.decoration.StickyItemDecoration;
 
 public class SectionDecorActivity extends AppCompatActivity {
@@ -41,11 +37,9 @@ public class SectionDecorActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.section_deco_rv);
         linearLayoutManager = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(linearLayoutManager);
         sectionDecorAdapter = new SectionDecorAdapter(this, MyData.getData3());
         recyclerView.setAdapter(sectionDecorAdapter);
-
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
 //        SectionItemDecoration sectionItemDecoration = new SectionItemDecoration(getResources().getDimensionPixelSize(R.dimen.sectioned_top), new SectionItemDecoration.SectionItemDecorationCb() {

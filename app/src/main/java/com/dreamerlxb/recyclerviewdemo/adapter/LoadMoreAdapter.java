@@ -99,6 +99,7 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
         }
         return adapter.createViewHolder(parent, viewType);
     }
+    // 判断布局类型
     // Adapter 吸附到 RecyclerView 时
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
@@ -120,6 +121,7 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
 
 
     /**
+     * 当View吸附到window时调用
      * 添加支持StaggeredGridLayoutManager
      * @param holder
      */

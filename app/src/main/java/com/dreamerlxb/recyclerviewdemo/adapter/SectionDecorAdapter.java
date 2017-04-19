@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * Created by sxb on 2017/3/17.
- * 分组
+ * 分组 （装饰布局）
  */
 
 public class SectionDecorAdapter<T extends SectionEntity> extends RecyclerView.Adapter {

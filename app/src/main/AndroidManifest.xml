@@ -27,7 +27,7 @@
             android:label="@string/title_activity_section"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".StickyActivity"
+            android:name=".StickySectionActivity"
             android:label="@string/title_activity_sticky"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

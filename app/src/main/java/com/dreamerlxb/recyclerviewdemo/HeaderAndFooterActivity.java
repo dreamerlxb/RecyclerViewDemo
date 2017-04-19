@@ -49,5 +49,4 @@ public class HeaderAndFooterActivity extends AppCompatActivity {
         headerAdapter.addFooter(this.getLayoutInflater().inflate(R.layout.recycler_header_item, null));
         recyclerView.setAdapter(headerAdapter);
     }
-
 }

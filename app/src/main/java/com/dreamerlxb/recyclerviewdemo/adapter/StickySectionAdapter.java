@@ -15,15 +15,15 @@ import java.util.List;
 
 /**
  * Created by sxb on 2017/3/17.
- * 分组
+ * 粘性布局分组
  */
 
-public class StickyAdapter <T extends SectionEntity> extends RecyclerView.Adapter{
+public class StickySectionAdapter<T extends SectionEntity> extends RecyclerView.Adapter{
     public static final int ITEM_TYPE_SECTION = 2222;
     public static final int ITEM_TYPE_NORMAL = 1111;
     private LayoutInflater inflater;
 
-    public StickyAdapter(Context context, List<T> dataList) {
+    public StickySectionAdapter(Context context, List<T> dataList) {
         this.dataList = dataList;
         this.inflater = LayoutInflater.from(context);
     }
