@@ -21,7 +21,7 @@ public class StickySectionActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private StickySectionAdapter stickySectionAdapter;
-    private View stickyView;
+    private View stickyView; // 这里的stickyView时RecyclerView的section
     private TextView stickyTv;
 
     private int stickyHeaderHeight;
@@ -99,5 +99,4 @@ public class StickySectionActivity extends AppCompatActivity {
             stickyTv.setText(ssei.getTitle());
         }
     }
-
 }

@@ -14,7 +14,7 @@ import com.dreamerlxb.recyclerviewdemo.adapter.SectionDecorAdapter;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
 import com.dreamerlxb.recyclerviewdemo.decoration.StickyItemDecoration;
 
-public class SectionDecorActivity extends AppCompatActivity {
+public class StickySectionDecorActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private SectionDecorAdapter sectionDecorAdapter;

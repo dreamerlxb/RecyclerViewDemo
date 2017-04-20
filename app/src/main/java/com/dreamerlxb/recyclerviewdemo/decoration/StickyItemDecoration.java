@@ -25,7 +25,6 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
     public StickyItemDecoration(int topGap, StickyItemDecorationCb sectionDecorationCb) {
         this.stickyDecorationCb = sectionDecorationCb;
         this.topGap = topGap;
-
         this.stickyDecorationCb = sectionDecorationCb;
         sectionPaint = new Paint();
         sectionPaint.setColor(Color.argb(255, 240, 240, 240));
@@ -50,8 +49,11 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
         long preSectionId, sectionId = -1;
         for (int i = 0; i < childCount; i++) {
             View view = parent.getChildAt(i);
+            /*
+            * getChildAdapterPosition: 获取VIew在adapter中的位置
+            * getChildLayoutPosition: 获取View在layout中的位置
+            * */
             int position = parent.getChildAdapterPosition(view);
-
             preSectionId = sectionId; // 记录上一个section的id
             sectionId = stickyDecorationCb.getSectionId(position);
             if (sectionId < 0 || sectionId == preSectionId) continue;

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Norma
                 startActivity(intent3);
                 break;
             case 3:
-                Intent intent4 = new Intent(this, SectionDecorActivity.class);
+                Intent intent4 = new Intent(this, StickySectionDecorActivity.class);
                 startActivity(intent4);
                 break;
             case 4:
