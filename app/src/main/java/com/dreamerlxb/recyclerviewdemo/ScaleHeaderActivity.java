@@ -20,7 +20,7 @@ public class ScaleHeaderActivity extends AppCompatActivity {
     private RecyclerView mAnim_rv;
     private View scaleView;
     private DisplayMetrics metric;
-    private boolean mScaling = false;
+//    private boolean mScaling = false;
     private float mFirstPosition = 0;
 
     private ScaleHeaderAdapter mTransAdapter;
@@ -47,26 +47,12 @@ public class ScaleHeaderActivity extends AppCompatActivity {
                 scaleView = view;
                 metric = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(metric);
+                Log.i("==metric==", metric.toString());
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) scaleView.getLayoutParams();
+                Log.i("==lp==", "width: " + lp.width + "    height: " + lp.height);
                 lp.width = metric.widthPixels;
                 lp.height = metric.widthPixels * 9 / 16;
                 scaleView.setLayoutParams(lp);
-//                initZoomImage();
-            }
-        });
-
-        mAnim_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                Log.i("============", newState + "");
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                Log.i("============", "dx = " + dx + "   dy = " + dy);
             }
         });
 
@@ -75,29 +61,29 @@ public class ScaleHeaderActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) scaleView.getLayoutParams();
                 switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        Log.i("======", "action down");
+                        if (mLinearLayoutManager.findFirstCompletelyVisibleItemPosition() == 0) {
+                            mFirstPosition = event.getY();
+                        } else {
+                            mFirstPosition = 0;
+                        }
+                        break;
                     case MotionEvent.ACTION_UP:
-                        mScaling = false;
+                        Log.i("======", " action up");
                         replyImage();
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        if (!mScaling) {
-                            //当图片也就是第一个item完全可见的时候，记录触摸屏幕的位置
-                            if (mLinearLayoutManager.findFirstCompletelyVisibleItemPosition() == 0) {
-                                mFirstPosition = event.getY();
-                            } else {
-                                break;
-                            }
-                        }
+                        Log.i("======", "action move");
                         int distance = (int) ((event.getY() - mFirstPosition) * 0.6); // 滚动距离乘以一个系数
                         if (distance < 0) {
                             break;
                         }
                         // 处理放大
-                        mScaling = true;
                         lp.width = metric.widthPixels + distance;
                         lp.height = (metric.widthPixels + distance) * 9 / 16;
                         scaleView.setLayoutParams(lp);
-                        return true; // 返回true表示已经完成触摸事件，不再处理
+                        break; // 返回true表示已经完成触摸事件，不再处理
                 }
                 return false;
             }
@@ -115,7 +101,6 @@ public class ScaleHeaderActivity extends AppCompatActivity {
 
         // 设置动画
         ValueAnimator anim = ObjectAnimator.ofFloat(0.0F, 1.0F).setDuration(200);
-
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {

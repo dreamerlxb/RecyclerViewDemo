@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/iv_header"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="220dp"
         android:layout_alignParentTop="true"
         android:scaleType="centerCrop"
         android:src="@mipmap/mark_default"
@@ -22,13 +22,13 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/iv_header"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-30dp"
         android:background="#ffffff"
         android:drawableLeft="@mipmap/personal"
         android:drawablePadding="5dp"
         android:drawableStart="@mipmap/personal"
         android:gravity="center_vertical"
-        android:padding="5dp"
+        android:padding="10dp"
         android:paddingLeft="10dp"
         android:paddingStart="10dp"
         android:text="普通类型:个人领地" />
@@ -41,7 +41,7 @@
         android:layout_height="60dp"
         android:layout_alignRight="@+id/linerLayout1"
         android:layout_alignTop="@+id/linerLayout1"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginTop="-30dp"
         android:scaleType="centerCrop"
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/markName_txt"
