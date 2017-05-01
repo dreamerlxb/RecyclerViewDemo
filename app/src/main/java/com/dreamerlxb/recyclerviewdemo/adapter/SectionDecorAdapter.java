@@ -67,7 +67,6 @@ public class SectionDecorAdapter<T extends SectionEntity> extends RecyclerView.A
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-
         public TextView textView;
 
         public ItemViewHolder(View itemView) {
@@ -75,5 +74,4 @@ public class SectionDecorAdapter<T extends SectionEntity> extends RecyclerView.A
             textView = (TextView) itemView.findViewById(R.id.sticky_normal_item_txt);
         }
     }
-
 }

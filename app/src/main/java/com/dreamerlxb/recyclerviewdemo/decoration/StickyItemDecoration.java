@@ -105,6 +105,5 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
             int sectionId = stickyDecorationCb.getSectionId(pos);
             return prevSectionId != sectionId;
         }
-
     }
 }

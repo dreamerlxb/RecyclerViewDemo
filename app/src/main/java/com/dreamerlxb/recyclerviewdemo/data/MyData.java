@@ -19,6 +19,7 @@ public class MyData {
         list.add("Sticky");
         list.add("Section Decoration");
         list.add("Load More");
+        list.add("scale header");
 
         return list;
     }
