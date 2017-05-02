@@ -51,7 +51,7 @@ public class ScaleHeaderActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mScaleView.getLayoutParams();
-                Log.i("ScaleView：", " width: " + lp.width + "   height: " + lp.height);
+//                Log.i("ScaleView：", " width: " + lp.width + "   height: " + lp.height);
                 switch (event.getAction()) {
 
                     case MotionEvent.ACTION_DOWN:
