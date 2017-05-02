@@ -10,6 +10,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -19,12 +20,15 @@ public class ScaleHeaderActivity extends AppCompatActivity {
 
     private RecyclerView mAnim_rv;
     private View scaleView;
-    private DisplayMetrics metric;
+//    private DisplayMetrics metric;
 //    private boolean mScaling = false;
     private float mFirstPosition = 0;
+    private ViewGroup.MarginLayoutParams zoomViewParams;
+    private int zoomViewHeight;
 
     private ScaleHeaderAdapter mTransAdapter;
     private LinearLayoutManager mLinearLayoutManager;
+    private boolean mScaling = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +49,14 @@ public class ScaleHeaderActivity extends AppCompatActivity {
             @Override
             public void onTouch(ImageView view) {
                 scaleView = view;
-                metric = new DisplayMetrics();
-                getWindowManager().getDefaultDisplay().getMetrics(metric);
-                Log.i("==metric==", metric.toString());
-                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) scaleView.getLayoutParams();
-                Log.i("==lp==", "width: " + lp.width + "    height: " + lp.height);
-                lp.width = metric.widthPixels;
-                lp.height = metric.widthPixels * 9 / 16;
-                scaleView.setLayoutParams(lp);
+                view.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        zoomViewParams = (ViewGroup.MarginLayoutParams) scaleView.getLayoutParams();
+                        zoomViewHeight = zoomViewParams.height;
+                        Log.i("==zoom view==", "width: " + zoomViewParams.width + "    height: " + zoomViewHeight);
+                    }
+                });
             }
         });
 
@@ -61,28 +65,55 @@ public class ScaleHeaderActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) scaleView.getLayoutParams();
                 switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        Log.i("======", "action down");
+                    /*
+                    Log.i("======", "action down");
                         if (mLinearLayoutManager.findFirstCompletelyVisibleItemPosition() == 0) {
+                            Log.i("=is top=", "first yes");
                             mFirstPosition = event.getY();
+                            isTop = true;
                         } else {
+                            Log.i("=is top=", "first no");
+                            isTop = false;
                             mFirstPosition = 0;
                         }
+                    */
+                    case MotionEvent.ACTION_DOWN:
                         break;
                     case MotionEvent.ACTION_UP:
                         Log.i("======", " action up");
-                        replyImage();
+                        if (mScaling) {
+                            replyImage();
+                            mScaling = false;
+                        }
                         break;
                     case MotionEvent.ACTION_MOVE:
                         Log.i("======", "action move");
-                        int distance = (int) ((event.getY() - mFirstPosition) * 0.6); // 滚动距离乘以一个系数
+                        if (!mScaling) {
+                            int p = mLinearLayoutManager.findFirstVisibleItemPosition();
+                            if (p == 0 && mLinearLayoutManager.findViewByPosition(p).getTop() == 0) {
+                                mFirstPosition = event.getY();
+                            } else {
+                                break;
+                            }
+                        }
+
+                        int distance = (int) ((event.getY() - mFirstPosition)* 0.6); // 滚动距离乘以一个系数
                         if (distance < 0) {
                             break;
                         }
+
+//                        int height = (int) (zoomViewHeight + (event.getY() - mFirstPosition) / 1.5 + 0.5); // 滚动距离乘以一个系数
+//                        Log.i("====", zoomViewHeight + "   " + height);
+//                        if (height <=  zoomViewHeight) {
+//                            height = zoomViewHeight;
+//                        } else if (height >= zoomViewHeight * 2) {
+//                            height = zoomViewHeight * 2;
+//                        }
                         // 处理放大
-                        lp.width = metric.widthPixels + distance;
-                        lp.height = (metric.widthPixels + distance) * 9 / 16;
+                        mScaling = true;
+                        lp.height = zoomViewHeight + distance;
                         scaleView.setLayoutParams(lp);
+
                         break; // 返回true表示已经完成触摸事件，不再处理
                 }
                 return false;
@@ -91,23 +122,15 @@ public class ScaleHeaderActivity extends AppCompatActivity {
 
     }
 
-
     private void replyImage() {
-        final RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) scaleView.getLayoutParams();
-        final float w = scaleView.getLayoutParams().width;// 图片当前宽度
-        final float h = scaleView.getLayoutParams().height;// 图片当前高度
-        final float newW = metric.widthPixels;// 图片原宽度
-        final float newH = metric.widthPixels * 9 / 16;// 图片原高度
-
         // 设置动画
         ValueAnimator anim = ObjectAnimator.ofFloat(0.0F, 1.0F).setDuration(200);
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                float cVal = (Float) animation.getAnimatedValue();
-                lp.width = (int) (w - (w - newW) * cVal);
-                lp.height = (int) (h - (h - newH) * cVal);
-                scaleView.setLayoutParams(lp);
+                zoomViewParams.height = zoomViewHeight;
+                scaleView.setLayoutParams(zoomViewParams);
+                mAnim_rv.scrollToPosition(0);
             }
         });
         anim.start();
