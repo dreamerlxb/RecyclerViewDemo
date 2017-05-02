@@ -130,7 +130,6 @@ public class ScaleHeaderActivity extends AppCompatActivity {
             public void onAnimationUpdate(ValueAnimator animation) {
                 zoomViewParams.height = zoomViewHeight;
                 scaleView.setLayoutParams(zoomViewParams);
-                mAnim_rv.scrollToPosition(0);
             }
         });
         anim.start();
