@@ -1,12 +1,20 @@
 package com.dreamerlxb.recyclerviewdemo.decoration;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.dreamerlxb.recyclerviewdemo.R;
+import com.dreamerlxb.recyclerviewdemo.util.Utities;
 
 /**
  * Created by Administrator on 2017/3/19.
@@ -16,6 +24,7 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
 
     public interface StickyItemDecorationCb {
         int getSectionId(int position);
+        Drawable getDrawable();
     }
     private StickyItemDecorationCb stickyDecorationCb;
     private Paint sectionPaint;
@@ -45,7 +54,6 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
-
         long preSectionId, sectionId = -1;
         for (int i = 0; i < childCount; i++) {
             View view = parent.getChildAt(i);
@@ -61,16 +69,21 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
             int viewBottom = view.getBottom();
             float textY = Math.max(topGap, view.getTop());
             if (position + 1 < itemCount) { // 如果position是最后一个，就不需要判断了
-                // 下一个和当前不一样移动当前
+                // 下一个View和当前View不在同一组
                 int nextSectionId = stickyDecorationCb.getSectionId(position + 1);
                 if (nextSectionId != sectionId && viewBottom < textY ) { // 组内最后一个view进入了header
                     textY = viewBottom;
                 }
             }
+
+            Bitmap bitmap = Utities.drawableToBitmap(stickyDecorationCb.getDrawable());
             c.drawRect(left, textY - topGap, right, textY, sectionPaint);
             // 计算 text的 baseline
             float baselineY = textY - topGap + (topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
-            c.drawText("Section" + sectionId, left, baselineY, textPaint);
+            c.drawText("Section" + sectionId, left + bitmap.getWidth() + 20, baselineY, textPaint);
+            // bitmap 的Y坐标
+            float bitmapTop = textY -topGap + topGap/2 - bitmap.getHeight()/2;
+            c.drawBitmap(bitmap, left, bitmapTop, textPaint);
         }
     }
 

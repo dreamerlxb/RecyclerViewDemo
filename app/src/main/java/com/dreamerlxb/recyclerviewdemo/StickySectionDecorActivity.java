@@ -1,8 +1,10 @@
 package com.dreamerlxb.recyclerviewdemo;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -55,6 +57,14 @@ public class StickySectionDecorActivity extends AppCompatActivity {
             public int getSectionId(int position) {
                 return sectionDecorAdapter.getSectionForPosition(position);
             }
+
+            @Override
+            public Drawable getDrawable() {
+                return ContextCompat.getDrawable(StickySectionDecorActivity.this,
+                        R.drawable.ic_android_black_24dp);
+            }
+
+
         });
         recyclerView.addItemDecoration(stickyItemDecoration);
     }
