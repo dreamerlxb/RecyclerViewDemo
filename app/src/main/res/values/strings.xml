@@ -8,4 +8,5 @@
     <string name="title_activity_section">SectionActivity</string>
     <string name="title_activity_sticky">StickyActivity</string>
     <string name="title_activity_section_decoration">SectionDecorationActivity</string>
+    <string name="base_url">http://markhere.cn:80/api/</string>
 </resources>

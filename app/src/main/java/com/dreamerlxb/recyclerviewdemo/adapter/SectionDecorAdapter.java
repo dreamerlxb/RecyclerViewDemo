@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.R;
-import com.dreamerlxb.recyclerviewdemo.entity.SectionDecorEntity;
+import com.dreamerlxb.recyclerviewdemo.entity.MarkType;
 import com.dreamerlxb.recyclerviewdemo.entity.SectionEntity;
-import com.dreamerlxb.recyclerviewdemo.entity.StickySectionEntityImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,12 +24,21 @@ public class SectionDecorAdapter<T extends SectionEntity> extends RecyclerView.A
     public static final int ITEM_TYPE_NORMAL = 1111;
     LayoutInflater inflater;
 
-    public SectionDecorAdapter(Context context, List<T> dataList) {
-        this.dataList = dataList;
+    public SectionDecorAdapter(Context context) {
+        this.mDataList = new ArrayList<>();
         this.inflater = LayoutInflater.from(context);
     }
 
-    private List<T> dataList;
+    private List<T> mDataList;
+
+    public void addItems(List<T> dataList) {
+        mDataList.addAll(dataList);
+    }
+
+    public void updateItems(List<T> dataList) {
+        mDataList.clear();
+        mDataList.addAll(dataList);
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -43,26 +52,26 @@ public class SectionDecorAdapter<T extends SectionEntity> extends RecyclerView.A
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        T se = dataList.get(position);
-        SectionDecorEntity ssei = (SectionDecorEntity) se;
+        T se = mDataList.get(position);
+        MarkType ssei = (MarkType) se;
         ItemViewHolder svh = (ItemViewHolder) holder;
-        svh.textView.setText(ssei.getTitle());
+        svh.textView.setText(ssei.getTypeDesc());
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return mDataList.size();
     }
 
     public T getItemObject(int pos) {
-        if (pos >= dataList.size()) {
+        if (pos >= mDataList.size()) {
             return  null;
         }
-        return dataList.get(pos);
+        return mDataList.get(pos);
     }
 
     public int getSectionForPosition(int position) {
-        T obj = dataList.get(position);
+        T obj = mDataList.get(position);
         return obj.getSectionId();
     }
 
