@@ -1,5 +1,6 @@
 package com.dreamerlxb.recyclerviewdemo.decoration;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,10 +11,13 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.dreamerlxb.recyclerviewdemo.R;
+import com.dreamerlxb.recyclerviewdemo.entity.MarkType;
 import com.dreamerlxb.recyclerviewdemo.util.Utities;
 
 /**
@@ -23,13 +27,25 @@ import com.dreamerlxb.recyclerviewdemo.util.Utities;
 public class StickyItemDecoration extends RecyclerView.ItemDecoration {
 
     public interface StickyItemDecorationCb {
+        /**
+         *  获取position对应位置的sectionId
+         * @param position
+         * @return
+         */
         int getSectionId(int position);
-        Drawable getDrawable();
+
+        /**
+         * 获取position对应的Section Item
+         * @param position
+         * @return
+         */
+        Object getSectionItem(int position);
     }
     private StickyItemDecorationCb stickyDecorationCb;
     private Paint sectionPaint;
     private Paint textPaint;
     private int topGap;
+    private Context context;
 
     public StickyItemDecoration(int topGap, StickyItemDecorationCb sectionDecorationCb) {
         this.stickyDecorationCb = sectionDecorationCb;
@@ -46,15 +62,21 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
         textPaint.setTextAlign(Paint.Align.LEFT);
     }
 
+    public StickyItemDecoration(Context context, StickyItemDecorationCb stickyDecorationCb) {
+        this(context.getResources().getDimensionPixelSize(R.dimen.sectioned_top), stickyDecorationCb);
+        this.context = context;
+    }
+
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
         int itemCount = state.getItemCount();
         int childCount = parent.getChildCount();
+//        Log.i("==childCount==", childCount + "");
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
-        long preSectionId, sectionId = -1;
+        int preSectionId, sectionId = -1;
         for (int i = 0; i < childCount; i++) {
             View view = parent.getChildAt(i);
             /*
@@ -64,6 +86,7 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
             int position = parent.getChildAdapterPosition(view);
             preSectionId = sectionId; // 记录上一个section的id
             sectionId = stickyDecorationCb.getSectionId(position);
+
             if (sectionId < 0 || sectionId == preSectionId) continue;
 
             int viewBottom = view.getBottom();
@@ -75,12 +98,19 @@ public class StickyItemDecoration extends RecyclerView.ItemDecoration {
                     textY = viewBottom;
                 }
             }
+//            Log.i("==here==", "======");
 
-            Bitmap bitmap = Utities.drawableToBitmap(stickyDecorationCb.getDrawable());
+            MarkType mt = (MarkType)stickyDecorationCb.getSectionItem(position);
+
+            int resId = context.getResources().getIdentifier(mt.getTypeName().toLowerCase(),"mipmap",context.getPackageName());
+            Drawable leftDrawable = ContextCompat.getDrawable(context, resId);
+
+            Bitmap bitmap = Utities.drawableToBitmap(leftDrawable);
             c.drawRect(left, textY - topGap, right, textY, sectionPaint);
             // 计算 text的 baseline
             float baselineY = textY - topGap + (topGap - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
-            c.drawText("Section" + sectionId, left + bitmap.getWidth() + 20, baselineY, textPaint);
+
+            c.drawText(mt.getTypeDesc(), left + bitmap.getWidth() + 20, baselineY, textPaint);
             // bitmap 的Y坐标
             float bitmapTop = textY -topGap + topGap/2 - bitmap.getHeight()/2;
             c.drawBitmap(bitmap, left, bitmapTop, textPaint);
