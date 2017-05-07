@@ -20,13 +20,14 @@ public class MyData {
         list.add("Section Decoration");
         list.add("Load More");
         list.add("scale header");
+        list.add("nested scroll");
 
         return list;
     }
 
     public static List<String> getTestData() {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             list.add("Test" + i );
         }
 
