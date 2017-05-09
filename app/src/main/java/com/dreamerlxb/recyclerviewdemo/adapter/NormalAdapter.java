@@ -2,6 +2,7 @@ package com.dreamerlxb.recyclerviewdemo.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class NormalAdapter extends RecyclerView.Adapter {
 
     @Override
     public NormalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.i("====", "cvh");
         View view = LayoutInflater.from(context).inflate(R.layout.normal_item, parent, false);
         return new NormalViewHolder(view);
     }
