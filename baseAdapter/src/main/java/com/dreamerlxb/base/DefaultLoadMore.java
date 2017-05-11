@@ -11,7 +11,7 @@ public class DefaultLoadMore extends BaseLoadMore {
 
     @Override
     public int getLayoutId() {
-        return R.layout.default_load_more;
+        return R.layout.default_base_adapter_load_more;
     }
 
     @Override
