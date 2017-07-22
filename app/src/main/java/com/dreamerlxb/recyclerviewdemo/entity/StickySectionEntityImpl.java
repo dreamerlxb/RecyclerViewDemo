@@ -4,7 +4,7 @@ package com.dreamerlxb.recyclerviewdemo.entity;
  * Created by Administrator on 2017/3/18.
  */
 
-public class StickySectionEntityImpl implements SectionEntity {
+public class StickySectionEntityImpl implements ISectionEntity {
     private int sectionId;
     private boolean isSection;
     private String title;

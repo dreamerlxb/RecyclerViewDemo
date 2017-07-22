@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.R;
 import com.dreamerlxb.recyclerviewdemo.entity.MarkType;
-import com.dreamerlxb.recyclerviewdemo.entity.SectionEntity;
+import com.dreamerlxb.recyclerviewdemo.entity.ISectionEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
  * 分组 （装饰布局）
  */
 
-public class SectionDecorAdapter<T extends SectionEntity> extends RecyclerView.Adapter {
+public class SectionDecorAdapter<T extends ISectionEntity> extends RecyclerView.Adapter {
     public static final int ITEM_TYPE_SECTION = 2222;
     public static final int ITEM_TYPE_NORMAL = 1111;
     LayoutInflater inflater;

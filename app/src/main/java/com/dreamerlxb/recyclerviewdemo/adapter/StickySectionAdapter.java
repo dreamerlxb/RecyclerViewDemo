@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.R;
-import com.dreamerlxb.recyclerviewdemo.entity.SectionEntity;
+import com.dreamerlxb.recyclerviewdemo.entity.ISectionEntity;
 import com.dreamerlxb.recyclerviewdemo.entity.StickySectionEntityImpl;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
  * 粘性布局分组
  */
 
-public class StickySectionAdapter<T extends SectionEntity> extends RecyclerView.Adapter{
+public class StickySectionAdapter<T extends ISectionEntity> extends RecyclerView.Adapter{
     public static final int ITEM_TYPE_SECTION = 2222;
     public static final int ITEM_TYPE_NORMAL = 1111;
     private LayoutInflater inflater;

@@ -4,7 +4,7 @@ package com.dreamerlxb.recyclerviewdemo.entity;
  * Created by sxb on 2017/5/2.
  */
 
-public class MarkType implements SectionEntity{
+public class MarkType implements ISectionEntity {
 
     /**
      * typeName : temp

@@ -4,7 +4,7 @@ package com.dreamerlxb.recyclerviewdemo.entity;
  * Created by Administrator on 2017/3/19.
  */
 
-public class SectionDecorEntity implements SectionEntity {
+public class SectionDecorEntity implements ISectionEntity {
     private int sectionId;
     private String title;
     private String sectionTitle;
