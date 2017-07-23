@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Norma
                 startActivity(intent6);
                 break;
             case 6:
-                Intent intent7 = new Intent(this, TestActivity.class);
+                Intent intent7 = new Intent(this, ExpandableSectionActivity.class);
                 startActivity(intent7);
                 break;
             default:

@@ -243,7 +243,9 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         return getDefItemViewType(position - getHeaderCount()); // 正常 item 位置
     }
 
-    public abstract int getDefItemViewType(int position) ;
+    public int getDefItemViewType(int position) {
+        return ITEM_TYPE_NORMAL;
+    }
 
 
     @Override

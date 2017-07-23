@@ -20,6 +20,7 @@ public class ExpandableAdapter extends RecyclerView.Adapter {
 
     public static final int ITEM_TYPE_SECTION = 2222;
     public static final int ITEM_TYPE_NORMAL = 1111;
+
     LayoutInflater inflater;
 
     public ExpandableAdapter(Context context, List<SectionEntityImpl> dataList,

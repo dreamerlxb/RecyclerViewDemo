@@ -38,7 +38,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LoadMoreActivity" />
         <activity android:name=".ScaleHeaderActivity" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".ExpandableSectionActivity"></activity>
     </application>
 
 </manifest>
