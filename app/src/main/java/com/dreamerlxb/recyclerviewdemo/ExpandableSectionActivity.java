@@ -17,9 +17,7 @@ public class ExpandableSectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
 
-        expandableAdapter = new ExpandableAdapter(this,
-                MyData.getExpandableSectionData(),
-                MyData.getExpandableSubItems());
+        expandableAdapter = new ExpandableAdapter(this, MyData.getExpandableSectionData());
 
         recyclerView = (RecyclerView) findViewById(R.id.test_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

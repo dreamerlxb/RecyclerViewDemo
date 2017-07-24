@@ -6,6 +6,7 @@ import com.dreamerlxb.recyclerviewdemo.entity.StickySectionEntityImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -63,66 +64,59 @@ public class MyData {
 
     public static List<SectionEntityImpl> getSectionGridData2() {
         List<SectionEntityImpl> list = new ArrayList<>();
-        list.add(new SectionEntityImpl(1,"Section-0", true));
-        list.add(new SectionEntityImpl(2,"test-0-0"));
-        list.add(new SectionEntityImpl(3,"test-0-1"));
-        list.add(new SectionEntityImpl(4,"test-0-2"));
-        list.add(new SectionEntityImpl(5,"test-0-3"));
-        list.add(new SectionEntityImpl(6,"Section-1", true));
-        list.add(new SectionEntityImpl(7,"test-1-0"));
-        list.add(new SectionEntityImpl(8,"test-1-1"));
-        list.add(new SectionEntityImpl(9,"test-1-2"));
-        list.add(new SectionEntityImpl(10,"test-1-3"));
-        list.add(new SectionEntityImpl(11,"test-1-4"));
-        list.add(new SectionEntityImpl(12,"Section-2", true));
-        list.add(new SectionEntityImpl(13,"test-2-0"));
-        list.add(new SectionEntityImpl(14,"test-2-1"));
-        list.add(new SectionEntityImpl(15,"test-2-2"));
-        list.add(new SectionEntityImpl(16,"Section-3", true));
-        list.add(new SectionEntityImpl(17,"test-3-0"));
-        list.add(new SectionEntityImpl(18,"test-3-1"));
-        list.add(new SectionEntityImpl(19,"test-3-2"));
-        list.add(new SectionEntityImpl(20,"test-3-3"));
-        list.add(new SectionEntityImpl(21,"test-3-4"));
-        list.add(new SectionEntityImpl(22,"test-3-5"));
-        list.add(new SectionEntityImpl(23,"Section-4", true));
-        list.add(new SectionEntityImpl(24,"test-4-0"));
-        list.add(new SectionEntityImpl(25,"test-4-1"));
-        list.add(new SectionEntityImpl(26,"test-4-2"));
-        list.add(new SectionEntityImpl(27,"test-4-3"));
+        list.add(new SectionEntityImpl("Section-0", true));
+        list.add(new SectionEntityImpl("test-0-0"));
+        list.add(new SectionEntityImpl("test-0-1"));
+        list.add(new SectionEntityImpl("test-0-2"));
+        list.add(new SectionEntityImpl("test-0-3"));
+        list.add(new SectionEntityImpl("Section-1", true));
+        list.add(new SectionEntityImpl("test-1-0"));
+        list.add(new SectionEntityImpl("test-1-1"));
+        list.add(new SectionEntityImpl("test-1-2"));
+        list.add(new SectionEntityImpl("test-1-3"));
+        list.add(new SectionEntityImpl("test-1-4"));
+        list.add(new SectionEntityImpl("Section-2", true));
+        list.add(new SectionEntityImpl("test-2-0"));
+        list.add(new SectionEntityImpl("test-2-1"));
+        list.add(new SectionEntityImpl("test-2-2"));
+        list.add(new SectionEntityImpl("Section-3", true));
+        list.add(new SectionEntityImpl("test-3-0"));
+        list.add(new SectionEntityImpl("test-3-1"));
+        list.add(new SectionEntityImpl("test-3-2"));
+        list.add(new SectionEntityImpl("test-3-3"));
+        list.add(new SectionEntityImpl("test-3-4"));
+        list.add(new SectionEntityImpl("test-3-5"));
+        list.add(new SectionEntityImpl("Section-4", true));
+        list.add(new SectionEntityImpl("test-4-0"));
+        list.add(new SectionEntityImpl("test-4-1"));
+        list.add(new SectionEntityImpl("test-4-2"));
+        list.add(new SectionEntityImpl("test-4-3"));
         return list;
     }
 
 
     public static List<SectionEntityImpl> getExpandableSectionData() {
-        List<SectionEntityImpl> list = new ArrayList<>();
-        list.add(new SectionEntityImpl(1,"Section-0", true));
-        list.add(new SectionEntityImpl(2,"Section-1", true));
-        list.add(new SectionEntityImpl(3,"Section-2", true));
-        list.add(new SectionEntityImpl(4,"Section-3", true));
-        list.add(new SectionEntityImpl(5,"Section-4", true));
+        List<SectionEntityImpl> list = new LinkedList<>();
+        list.add(new SectionEntityImpl("Section-0", true, getItems(0)));
+        list.add(new SectionEntityImpl("Section-1", true, getItems(0)));
+        list.add(new SectionEntityImpl("Section-2", true, getItems(0)));
+        list.add(new SectionEntityImpl("Section-3", true, getItems(0)));
+        list.add(new SectionEntityImpl("Section-4", true, getItems(0)));
 
         return list;
     }
 
     private static List<SectionEntityImpl> getItems(int id) {
         List<SectionEntityImpl> list = new ArrayList<>();
-        list.add(new SectionEntityImpl(id + 1,"Sub Section-0", false));
-        list.add(new SectionEntityImpl(id + 2,"Sub Section-1", false));
-        list.add(new SectionEntityImpl(id + 3,"Sub Section-2", false));
-        list.add(new SectionEntityImpl(id + 4,"Sub Section-3", false));
-        list.add(new SectionEntityImpl(id + 5,"Sub Section-4", false));
+        list.add(new SectionEntityImpl("Sub Section-0", false));
+        list.add(new SectionEntityImpl("Sub Section-1", false));
+        list.add(new SectionEntityImpl("Sub Section-2", false));
+        list.add(new SectionEntityImpl("Sub Section-3", false));
+        list.add(new SectionEntityImpl("Sub Section-4", false));
 
         return list;
     }
 
-    public static Map<Integer, List<SectionEntityImpl>> getExpandableSubItems() {
-        Map<Integer, List<SectionEntityImpl>> m = new HashMap<>();
-        m.put(1, getItems(10));
-        m.put(3, getItems(20));
-        m.put(4, getItems(30));
-        return m;
-    }
 
     public static List<StickySectionEntityImpl> getData2() {
         List<StickySectionEntityImpl> list = new ArrayList<>();

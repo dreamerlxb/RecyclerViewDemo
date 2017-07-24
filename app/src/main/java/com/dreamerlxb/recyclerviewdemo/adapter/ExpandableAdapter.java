@@ -23,17 +23,12 @@ public class ExpandableAdapter extends RecyclerView.Adapter {
 
     LayoutInflater inflater;
 
-    public ExpandableAdapter(Context context, List<SectionEntityImpl> dataList,
-                             Map<Integer, List<SectionEntityImpl>> items) {
+    public ExpandableAdapter(Context context, List<SectionEntityImpl> dataList) {
         this.dataList = dataList;
         this.inflater = LayoutInflater.from(context);
-
-        subItems = items;
     }
 
     private List<SectionEntityImpl> dataList;
-
-    private Map<Integer, List<SectionEntityImpl>> subItems;
 
     @Override
     public int getItemViewType(int position) {
@@ -66,6 +61,25 @@ public class ExpandableAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return dataList.size();
+    }
+
+    public void open(int position) {
+        SectionEntityImpl s = dataList.get(position);
+        List<SectionEntityImpl> items = s.getSubItems();
+
+        if (s.isExpanded()) {
+            if(items != null) {
+                dataList.subList(position + 1, position + 1 + items.size()).clear();
+                s.setExpanded(false);
+                notifyItemRangeRemoved(position + 1, items.size());
+            }
+        } else {
+            if (items != null) {
+                dataList.addAll(position + 1, items);
+                s.setExpanded(true);
+                notifyItemRangeInserted(position + 1, items.size());
+            }
+        }
     }
 
     // Adapter 吸附到 RecyclerView 时
@@ -138,21 +152,7 @@ public class ExpandableAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     int p = getAdapterPosition();
-                    SectionEntityImpl s = dataList.get(p);
-                    List<SectionEntityImpl> items = subItems.get(p);
-                    if (s.isExpanded()) {
-                        if(items != null) {
-                            dataList.subList(p + 1, p + 1 + items.size()).clear();
-                            s.setExpanded(false);
-                            notifyItemRangeRemoved(p+1, items.size());
-                        }
-                    } else {
-                        if (items != null) {
-                            dataList.addAll(p + 1, items);
-                            s.setExpanded(true);
-                            notifyItemRangeChanged(p+1, items.size());
-                        }
-                    }
+                    open(p);
                 }
             });
         }
