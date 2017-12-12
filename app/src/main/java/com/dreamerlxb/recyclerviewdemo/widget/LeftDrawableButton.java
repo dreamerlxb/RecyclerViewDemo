@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.support.v7.widget.AppCompatButton;
 
 /**
+ * @author lxb
  * Created by sxb on 16/9/12.
  */
 

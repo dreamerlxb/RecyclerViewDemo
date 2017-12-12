@@ -1,11 +1,14 @@
 package com.dreamerlxb.base;
 
 import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.TextView;
 
 /**
+ * @author lxb
  * Created by Administrator on 2017/5/7.
  */
 
@@ -33,7 +36,30 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         if (visible) {
             v.setVisibility(View.VISIBLE);
         } else {
+            v.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setGone(@IdRes int viewId, boolean gone) {
+        View v = getView(viewId);
+        if (gone) {
             v.setVisibility(View.GONE);
+        } else {
+            v.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void setText(@IdRes int viewId, CharSequence text) {
+        View v = getView(viewId);
+        if (v != null && v instanceof TextView) {
+            ((TextView)v).setText(text);
+        }
+    }
+
+    public void setText(@IdRes int viewId, @StringRes int stringRes) {
+        View v = getView(viewId);
+        if (v != null && v instanceof TextView) {
+            ((TextView)v).setText(stringRes);
         }
     }
 }
