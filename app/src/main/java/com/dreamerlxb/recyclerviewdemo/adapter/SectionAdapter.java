@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.R;
 import com.dreamerlxb.recyclerviewdemo.entity.SectionEntityImpl;
+import com.dreamerlxb.recyclerviewdemo.listener.OnItemClickListener;
 
 import java.util.List;
 
@@ -20,9 +22,9 @@ import java.util.List;
  */
 
 public class SectionAdapter extends RecyclerView.Adapter {
-    public static final int ITEM_TYPE_SECTION = 2222;
-    public static final int ITEM_TYPE_NORMAL = 1111;
-    LayoutInflater inflater;
+    private static final int ITEM_TYPE_SECTION = 2222;
+    private static final int ITEM_TYPE_NORMAL = 1111;
+    private LayoutInflater inflater;
 
     public SectionAdapter(Context context, List<SectionEntityImpl> dataList) {
         this.dataList = dataList;
@@ -100,35 +102,58 @@ public class SectionAdapter extends RecyclerView.Adapter {
         }
     }
 
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     /**
      * 判断是否为section
      * @param pos
      * @return
      */
     public boolean isSection(int pos) {
-        if (pos >= dataList.size()) {
-            return false;
-        }
-       return dataList.get(pos).isSection();
+        return pos < dataList.size() && dataList.get(pos).isSection();
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView;
+        TextView textView;
 
-        public ItemViewHolder(View itemView) {
+        ItemViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.rv_item_txt);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("VH", getLayoutPosition() + "   " + getAdapterPosition());
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClick(getLayoutPosition());
+                    }
+                }
+            });
         }
     }
 
     public class SectionViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView;
+        TextView textView;
 
-        public SectionViewHolder(View itemView) {
+        SectionViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.section_txt);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("VH", getLayoutPosition() + "   " + getAdapterPosition());
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClick(getLayoutPosition());
+                    }
+                }
+            });
         }
     }
 }
