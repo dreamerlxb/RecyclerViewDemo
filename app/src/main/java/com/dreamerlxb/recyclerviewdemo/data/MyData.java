@@ -27,7 +27,8 @@ public class MyData {
     }
 
     /**
-     *  测试RecyclerView
+     * 测试RecyclerView
+     *
      * @return List<String>
      */
     public static List<String> getRvData() {
@@ -46,14 +47,14 @@ public class MyData {
     public static List<String> getTestData() {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            list.add("Test" + i );
+            list.add("Test" + i);
         }
 
         return list;
     }
 
     public static List<String> getTestGridData() {
-        String [] strs = {"dsdsdcscsv", "sddsvsdvsdfddvsdvvsv", "sddsvsdvsdvsdsewfwfsdvvsv", "svsdvdvsdvvsv"};
+        String[] strs = {"dsdsdcscsv", "sddsvsdvsdfddvsdvvsv", "sddsvsdvsdvsdsewfwfsdvvsv", "svsdvdvsdvvsv"};
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
             int a = (int) (Math.random() * strs.length);

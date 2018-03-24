@@ -39,5 +39,6 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.11'
     compile 'com.airbnb.android:lottie:2.5.0'
     compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     testCompile 'junit:junit:4.12'
 }

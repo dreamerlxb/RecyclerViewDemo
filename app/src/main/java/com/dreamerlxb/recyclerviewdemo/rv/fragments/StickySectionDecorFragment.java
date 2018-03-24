@@ -38,8 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * create an instance of this fragment.
  */
 public class StickySectionDecorFragment extends SupportFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -50,8 +49,7 @@ public class StickySectionDecorFragment extends SupportFragment {
     private RecyclerView recyclerView;
     private Toolbar toolbar;
 
-    private LinearLayoutManager linearLayoutManager;
-    private SectionDecorAdapter sectionDecorAdapter;
+    private SectionDecorAdapter<MarkType> sectionDecorAdapter;
     private List<MarkType> items;
     private List<MarkType> sections;
 
@@ -59,15 +57,6 @@ public class StickySectionDecorFragment extends SupportFragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StickySectionDecorFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static StickySectionDecorFragment newInstance(String param1, String param2) {
         StickySectionDecorFragment fragment = new StickySectionDecorFragment();
         Bundle args = new Bundle();
@@ -122,9 +111,9 @@ public class StickySectionDecorFragment extends SupportFragment {
             }
         });
 
-        linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        sectionDecorAdapter = new SectionDecorAdapter(getContext());
+        sectionDecorAdapter = new SectionDecorAdapter<MarkType>(getContext());
         recyclerView.setAdapter(sectionDecorAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 

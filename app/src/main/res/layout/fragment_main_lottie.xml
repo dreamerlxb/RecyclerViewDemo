@@ -29,7 +29,7 @@
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/loading_lottie"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 app:lottie_autoPlay="true"
                 app:lottie_fileName="spinner.json"
@@ -39,7 +39,7 @@
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/loading_lottie2"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 app:lottie_autoPlay="true"
                 app:lottie_fileName="spinner2.json"

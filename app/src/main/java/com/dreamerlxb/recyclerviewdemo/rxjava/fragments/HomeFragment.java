@@ -2,13 +2,27 @@ package com.dreamerlxb.recyclerviewdemo.rxjava.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.dreamerlxb.recyclerviewdemo.R;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import me.yokeyword.fragmentation.SupportFragment;
 
 
@@ -51,5 +65,57 @@ public class HomeFragment extends SupportFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+
+        Flowable.interval(1, TimeUnit.MILLISECONDS)
+                .onBackpressureDrop() //onBackpressureDrop 一定要放在 interval 后面否则不会生效
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        Thread.sleep(1000);
+                        Log.i("zhao", "onNext: " + aLong);
+                    }
+                });
+
+        Flowable.create(new FlowableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+                for (int i = 0; i < 100; i++) {  //只发1w个事件
+                    emitter.onNext(i);
+                }
+            }
+        }, BackpressureStrategy.DROP)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        Log.i("Flowable", "onSubscribe");
+                        // mSubscription = s;
+                        // s.request(128);  //一开始就处理掉128个事件
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        Log.i("Flowable", "onNext: " + integer);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        Log.i("Flowable", "onError: ", t);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.i("Flowable", "onComplete");
+                    }
+                });
     }
 }
