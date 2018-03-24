@@ -15,15 +15,30 @@ import java.util.Map;
  */
 
 public class MyData {
-    public static List<String> getNormalData() {
+
+    public static List<String> getMainData() {
         List<String> list = new ArrayList<>();
-        list.add("Header And Footer");
+        list.add("RecyclerView");
+        list.add("Rxjava");
+        list.add("Lottie");
+        list.add("Notification");
+
+        return list;
+    }
+
+    /**
+     *  测试RecyclerView
+     * @return List<String>
+     */
+    public static List<String> getRvData() {
+        List<String> list = new ArrayList<>();
+        list.add("Header Footer");
         list.add("Section");
         list.add("Sticky");
-        list.add("Section Decoration");
         list.add("Load More");
+        list.add("Section Decoration");
+        list.add("Expandable Section");
         list.add("Scale header");
-        list.add("Expandable Sections");
 
         return list;
     }

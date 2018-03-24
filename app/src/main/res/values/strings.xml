@@ -9,4 +9,9 @@
     <string name="title_activity_sticky">StickyActivity</string>
     <string name="title_activity_section_decoration">SectionDecorationActivity</string>
     <string name="base_url">http://markhere.cn:80/api/</string>
+    <string name="loading">加载中...</string>
+    <string name="no_data">没有数据了</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
