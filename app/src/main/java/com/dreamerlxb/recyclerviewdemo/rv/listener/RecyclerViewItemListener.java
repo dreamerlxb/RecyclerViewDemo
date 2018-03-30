@@ -1,4 +1,4 @@
-package com.dreamerlxb.recyclerviewdemo.listener;
+package com.dreamerlxb.recyclerviewdemo.rv.listener;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;

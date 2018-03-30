@@ -1,4 +1,4 @@
-package com.dreamerlxb.recyclerviewdemo.listener;
+package com.dreamerlxb.recyclerviewdemo.rv.listener;
 
 /**
  * Created by lion on 2018/3/15.

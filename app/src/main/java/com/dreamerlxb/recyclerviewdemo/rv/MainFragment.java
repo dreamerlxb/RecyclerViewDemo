@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 import com.dreamerlxb.recyclerviewdemo.R;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
-import com.dreamerlxb.recyclerviewdemo.listener.OnItemClickListener;
+import com.dreamerlxb.recyclerviewdemo.rv.listener.OnItemClickListener;
 import com.dreamerlxb.recyclerviewdemo.rv.adapter.MainAdapter;
 import com.dreamerlxb.recyclerviewdemo.rv.fragments.ExpandableSectionFragment;
 import com.dreamerlxb.recyclerviewdemo.rv.fragments.HeaderFooterFragment;

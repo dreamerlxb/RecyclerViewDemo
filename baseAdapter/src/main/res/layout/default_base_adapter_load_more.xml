@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <ProgressBar
         android:id="@+id/default_pb"
@@ -16,6 +17,6 @@
         android:id="@+id/default_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="加载更多..."
+        android:text="@string/load_more_txt"
         android:textSize="18sp" />
 </LinearLayout>

@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dreamerlxb.recyclerviewdemo.R;
-import com.dreamerlxb.recyclerviewdemo.listener.OnItemClickListener;
+import com.dreamerlxb.recyclerviewdemo.rv.listener.OnItemClickListener;
 import com.dreamerlxb.recyclerviewdemo.rxjava.adatpers.MainAdapter;
 
 import java.util.ArrayList;

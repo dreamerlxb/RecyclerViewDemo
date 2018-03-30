@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.R;
 import com.dreamerlxb.recyclerviewdemo.entity.SectionEntityImpl;
-import com.dreamerlxb.recyclerviewdemo.listener.OnItemClickListener;
+import com.dreamerlxb.recyclerviewdemo.rv.listener.OnItemClickListener;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dreamerlxb.recyclerviewdemo.R;
-import com.dreamerlxb.recyclerviewdemo.listener.OnItemClickListener;
+import com.dreamerlxb.recyclerviewdemo.rv.listener.OnItemClickListener;
 
 import java.util.List;
 

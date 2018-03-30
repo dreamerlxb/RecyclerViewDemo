@@ -22,6 +22,7 @@ public class MyData {
         list.add("Rxjava");
         list.add("Lottie");
         list.add("Notification");
+        list.add("Editor");
 
         return list;
     }

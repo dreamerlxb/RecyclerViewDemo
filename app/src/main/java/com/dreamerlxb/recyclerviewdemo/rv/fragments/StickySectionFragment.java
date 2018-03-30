@@ -9,8 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,6 @@ import android.widget.TextView;
 import com.dreamerlxb.recyclerviewdemo.R;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
 import com.dreamerlxb.recyclerviewdemo.entity.StickySectionEntityImpl;
-import com.dreamerlxb.recyclerviewdemo.listener.RecyclerViewItemListener;
 import com.dreamerlxb.recyclerviewdemo.rv.adapter.StickySectionAdapter;
 
 import me.yokeyword.fragmentation.SupportFragment;

@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.dreamerlxb.recyclerviewdemo.adapters.MainAdapter;
-import com.dreamerlxb.recyclerviewdemo.listener.OnItemClickListener;
+import com.dreamerlxb.recyclerviewdemo.rv.listener.OnItemClickListener;
 import com.dreamerlxb.recyclerviewdemo.data.MyData;
 
 public class MainActivity extends AppCompatActivity implements OnItemClickListener {
@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             case 3:
                 Intent intent4 = new Intent(this, com.dreamerlxb.recyclerviewdemo.notifications.MainActivity.class);
                 startActivity(intent4);
+                break;
+            case 4:
+                Intent intent5 = new Intent(this, com.dreamerlxb.recyclerviewdemo.editor.MainActivity.class);
+                startActivity(intent5);
                 break;
         }
     }
