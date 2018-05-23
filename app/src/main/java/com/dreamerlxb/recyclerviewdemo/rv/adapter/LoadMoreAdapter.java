@@ -33,33 +33,33 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
         this.loadMoreListener = loadMoreListener;
     }
 
-    private RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-            if(newState == RecyclerView.SCROLL_STATE_IDLE) { // 当recycleView滚动停止时，判断是否到最底部，若到了最底部直接加载更多
-                if (!recyclerView.canScrollVertically(1) ) { //判断垂直方向上可否向上移动
-                    // 在这加载更多数据 (数据已经加载完成)
-                    if (hasMore) {
-                        loadMoreListener.onLoadMore();
-                    } else {
-                        notifyItemChanged(getItemCount() - 1);
-                        recyclerView.removeOnScrollListener(this);
-                    }
-                }
-            }
-        }
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-        }
-    };
-
     public LoadMoreAdapter(RecyclerView recyclerView, NormalAdapter adapter) {
         this.context = recyclerView.getContext();
         this.adapter = adapter;
         this.hasMore = true;
+
+        RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) { // 当recycleView滚动停止时，判断是否到最底部，若到了最底部直接加载更多
+                    if (!recyclerView.canScrollVertically(1)) { //判断垂直方向上可否向上移动
+                        // 在这加载更多数据 (数据已经加载完成)
+                        if (hasMore) {
+                            loadMoreListener.onLoadMore();
+                        } else {
+                            notifyItemChanged(getItemCount() - 1);
+                            recyclerView.removeOnScrollListener(this);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        };
         recyclerView.addOnScrollListener(onScrollListener);
     }
 

@@ -1,6 +1,7 @@
 package com.dreamerlxb.recyclerviewdemo.rv.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,8 +41,9 @@ public class HeaderAndFooterAdapter extends RecyclerView.Adapter {
         footerViews.put(footerViews.size() + ITEM_TYPE_FOOTER_BASE, footerView);
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (headerViews.get(viewType, null) != null) { // 头部
             return new HeaderAndFooterViewHolder(headerViews.get(viewType));
         } else if (footerViews.get(viewType, null) != null) {
@@ -51,7 +53,7 @@ public class HeaderAndFooterAdapter extends RecyclerView.Adapter {
     }
     // Adapter 吸附到 RecyclerView 时
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
         if (manager instanceof GridLayoutManager) {
@@ -75,7 +77,7 @@ public class HeaderAndFooterAdapter extends RecyclerView.Adapter {
      * @param holder
      */
     @Override
-    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+    public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         if (null != layoutParams && layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
@@ -95,7 +97,7 @@ public class HeaderAndFooterAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(isHeader(position) || isFooter(position)) {
             return;
         }

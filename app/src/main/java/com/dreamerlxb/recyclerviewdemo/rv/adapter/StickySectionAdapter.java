@@ -1,6 +1,7 @@
 package com.dreamerlxb.recyclerviewdemo.rv.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,18 +37,17 @@ public class StickySectionAdapter<T extends ISectionEntity> extends RecyclerView
         return se.isSection() ? ITEM_TYPE_SECTION : ITEM_TYPE_NORMAL;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == ITEM_TYPE_NORMAL) {
-            return new ItemViewHolder(inflater.inflate(R.layout.sticky_normal_item, parent, false));
-        } else if (viewType == ITEM_TYPE_SECTION) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == ITEM_TYPE_SECTION) {
             return new SectionViewHolder(inflater.inflate(R.layout.sticky_section_item, parent, false));
         }
-        return null;
+        return new ItemViewHolder(inflater.inflate(R.layout.sticky_normal_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         StickySectionEntityImpl se = (StickySectionEntityImpl) dataList.get(position);
         if (se.isSection()) {
             SectionViewHolder svh = (SectionViewHolder) holder;
@@ -93,7 +93,7 @@ public class StickySectionAdapter<T extends ISectionEntity> extends RecyclerView
 
         ItemViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.sticky_normal_item_txt);
+            textView = itemView.findViewById(R.id.sticky_normal_item_txt);
         }
     }
 
@@ -103,7 +103,7 @@ public class StickySectionAdapter<T extends ISectionEntity> extends RecyclerView
 
         SectionViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.sticky_section_item_txt);
+            textView = itemView.findViewById(R.id.sticky_section_item_txt);
         }
     }
 }

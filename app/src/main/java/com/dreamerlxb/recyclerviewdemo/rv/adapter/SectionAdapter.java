@@ -1,6 +1,7 @@
 package com.dreamerlxb.recyclerviewdemo.rv.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -39,18 +40,17 @@ public class SectionAdapter extends RecyclerView.Adapter {
         return se.isSection() ? ITEM_TYPE_SECTION : ITEM_TYPE_NORMAL;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == ITEM_TYPE_NORMAL) {
-            return new ItemViewHolder(inflater.inflate(R.layout.normal_item, null));
-        } else if (viewType == ITEM_TYPE_SECTION) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == ITEM_TYPE_SECTION) {
             return new SectionViewHolder(inflater.inflate(R.layout.section_item, null));
         }
-        return null;
+        return new ItemViewHolder(inflater.inflate(R.layout.normal_item, null));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         SectionEntityImpl se = dataList.get(position);
         if (se.isSection()) {
             SectionViewHolder svh = (SectionViewHolder) holder;
@@ -68,7 +68,7 @@ public class SectionAdapter extends RecyclerView.Adapter {
 
     // Adapter 吸附到 RecyclerView 时
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
         if (manager instanceof GridLayoutManager) {
@@ -90,7 +90,7 @@ public class SectionAdapter extends RecyclerView.Adapter {
      * @param holder
      */
     @Override
-    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+    public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         if (null != layoutParams && layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {

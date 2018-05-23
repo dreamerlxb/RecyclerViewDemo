@@ -1,6 +1,7 @@
 package com.dreamerlxb.recyclerviewdemo.rv.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,15 +32,16 @@ public class NormalAdapter extends RecyclerView.Adapter {
         dataList.addAll(list);
     }
 
+    @NonNull
     @Override
-    public NormalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NormalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.i("====", "cvh");
         View view = LayoutInflater.from(context).inflate(R.layout.normal_item, parent, false);
         return new NormalViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         holder.itemView.setTag(position);
         NormalViewHolder vh = (NormalViewHolder) holder;
         vh.textView.setText(dataList.get(position));
@@ -62,7 +64,7 @@ public class NormalAdapter extends RecyclerView.Adapter {
 
         public NormalViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.rv_item_txt);
+            textView = itemView.findViewById(R.id.rv_item_txt);
         }
     }
 }

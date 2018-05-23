@@ -1,6 +1,7 @@
 package com.dreamerlxb.recyclerviewdemo.rv.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,15 +34,16 @@ public class MainAdapter extends RecyclerView.Adapter implements View.OnClickLis
         this.dataList = dataList;
     }
 
+    @NonNull
     @Override
-    public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.main_item, parent, false);
         view.setOnClickListener(this);
         return new MainViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         holder.itemView.setTag(position);
         MainViewHolder vh = (MainViewHolder) holder;
         vh.textView.setText(dataList.get(position));

@@ -1,6 +1,7 @@
 package com.dreamerlxb.recyclerviewdemo.rv.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,13 +48,14 @@ public class SectionDecorAdapter<T extends ISectionEntity> extends RecyclerView.
         return ITEM_TYPE_NORMAL;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ItemViewHolder(inflater.inflate(R.layout.sticky_normal_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         T se = mDataList.get(position);
         MarkType ssei = (MarkType) se;
         ItemViewHolder svh = (ItemViewHolder) holder;
