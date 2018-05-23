@@ -1,5 +1,6 @@
 package com.dreamerlxb.recyclerviewdemo.rxjava.adatpers;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,15 +32,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainVH> {
         notifyItemRangeInserted(items.size() - 1, items.size());
     }
 
+    @NonNull
     @Override
-    public MainVH onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MainVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.main_item, parent, false);
         return new MainVH(v);
     }
 
     @Override
-    public void onBindViewHolder(MainVH holder, int position) {
+    public void onBindViewHolder(@NonNull MainVH holder, int position) {
         String txt = getItem(position);
         holder.titleTv.setText(txt);
     }

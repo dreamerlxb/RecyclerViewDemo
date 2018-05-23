@@ -2,6 +2,7 @@ package com.dreamerlxb.recyclerviewdemo.rv.fragments;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ public class ScaleHeaderActivity extends AppCompatActivity {
     private LinearLayoutManager mLinearLayoutManager;
     private boolean mScaling = false;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

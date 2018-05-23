@@ -1,6 +1,7 @@
 package com.dreamerlxb.recyclerviewdemo.rv.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -82,8 +83,9 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
         this.hasMore = hasMore;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE_LOAD_MORE) { // load more
             if (hasMore) {
                 Log.i("=======", hasMore+"");
@@ -98,7 +100,7 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
     // 判断布局类型
     // Adapter 吸附到 RecyclerView 时
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
         if (manager instanceof GridLayoutManager) {
@@ -122,7 +124,7 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
      * @param holder
      */
     @Override
-    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+    public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         if (null != layoutParams && layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
@@ -134,7 +136,7 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(position + 1 == getItemCount()) {
             return;
         }
