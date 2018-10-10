@@ -1,1 +1,1 @@
-include ':app', ':baseAdapter'
+include ':app', ':baseAdapter', ':pagerlayoutmanager'

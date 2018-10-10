@@ -106,13 +106,13 @@ public class StickySectionFragment extends SupportFragment {
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 stickyHeaderHeight = stickyView.getHeight();
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (stickySectionAdapter.isSection(rvCurrentPos + 1)) {
                     View view = linearLayoutManager.findViewByPosition(rvCurrentPos + 1);

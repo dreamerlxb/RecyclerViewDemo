@@ -81,7 +81,7 @@ public class MainFragment extends SupportFragment implements OnItemClickListener
         super.onActivityCreated(savedInstanceState);
 
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        rv.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
 
         MainAdapter mainAdapter = new MainAdapter(getContext(), MyData.getRvData());
         mainAdapter.setItemClickListener(this);
@@ -108,6 +108,8 @@ public class MainFragment extends SupportFragment implements OnItemClickListener
                 break;
             case 5:
                 start(ExpandableSectionFragment.newInstance("", ""));
+                break;
+            default:
                 break;
         }
     }

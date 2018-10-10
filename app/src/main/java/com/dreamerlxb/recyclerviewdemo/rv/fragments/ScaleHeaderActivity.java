@@ -86,6 +86,8 @@ public class ScaleHeaderActivity extends AppCompatActivity {
                         mScaleView.setLayoutParams(lp);
                         mDistance = distance;
                         break;
+                    default:
+                        break;
                 }
                 return false;
             }

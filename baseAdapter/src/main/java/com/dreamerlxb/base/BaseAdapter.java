@@ -3,6 +3,7 @@ package com.dreamerlxb.base;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -61,7 +62,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
      */
     private RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
         @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
             // 如果没有启用加载更多，那么不做处理
             if (!mEnableLoadMore) {
@@ -158,7 +159,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     // Adapter 吸附到 RecyclerView 时
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
         if (manager instanceof GridLayoutManager) {
@@ -177,7 +178,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     // 添加支持StaggeredGridLayoutManager
     @Override
-    public void onViewAttachedToWindow(BaseViewHolder holder) {
+    public void onViewAttachedToWindow(@NonNull BaseViewHolder holder) {
         super.onViewAttachedToWindow(holder);
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         if (null != layoutParams &&
@@ -190,9 +191,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         }
     }
 
+    @NonNull
     @SuppressLint("ResourceType")
     @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (mHeaderViews.get(viewType, null) != null) { // 头部
             return new HeaderAndFooterViewHolder(mHeaderViews.get(viewType));
         } else if (viewType == ITEM_TYPE_EMPTY) {
@@ -226,7 +228,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         if (isHeader(position) || isEmpty(position) || isFooter(position)) {
             return;
         }

@@ -43,6 +43,8 @@ public class DefaultLoadMore extends BaseLoadMore {
                 TextView tv4 = holder.getView(R.id.default_tv);
                 tv4.setText("加载更多");
                 break;
+            default:
+                break;
         }
     }
 }

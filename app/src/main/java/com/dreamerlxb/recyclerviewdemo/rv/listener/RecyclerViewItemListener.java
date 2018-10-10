@@ -1,5 +1,6 @@
 package com.dreamerlxb.recyclerviewdemo.rv.listener;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -36,7 +37,7 @@ public class RecyclerViewItemListener extends RecyclerView.SimpleOnItemTouchList
     }
 
     @Override
-    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+    public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
         gestureDetector.onTouchEvent(e);
         return false;
     }

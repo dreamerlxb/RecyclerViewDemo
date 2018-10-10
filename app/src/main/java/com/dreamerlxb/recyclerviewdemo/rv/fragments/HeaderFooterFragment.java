@@ -99,7 +99,7 @@ public class HeaderFooterFragment extends SupportFragment {
         });
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerGridItemDecoration(getContext()));
+        recyclerView.addItemDecoration(new DividerGridItemDecoration(requireContext()));
         // 自定义
         NormalAdapter adapter = new NormalAdapter(getContext(), MyData.getTestGridData());
         final HeaderAndFooterAdapter headerAdapter = new HeaderAndFooterAdapter(getContext(), adapter);

@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 Intent intent5 = new Intent(this, com.dreamerlxb.recyclerviewdemo.editor.MainActivity.class);
                 startActivity(intent5);
                 break;
+            default:
+                break;
         }
     }
 

@@ -88,7 +88,7 @@ public class LoadMoreFragment extends SupportFragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new LoadMoreDividerItemDecoration(getContext()));
+        recyclerView.addItemDecoration(new LoadMoreDividerItemDecoration(requireContext()));
 
         final NormalAdapter adapter = new NormalAdapter(getContext(), MyData.getTestGridData());
         final LoadMoreAdapter loadMoreAdapter = new LoadMoreAdapter(recyclerView, adapter);

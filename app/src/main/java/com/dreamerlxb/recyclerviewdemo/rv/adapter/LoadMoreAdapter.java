@@ -40,7 +40,7 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
 
         RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) { // 当recycleView滚动停止时，判断是否到最底部，若到了最底部直接加载更多
                     if (!recyclerView.canScrollVertically(1)) { //判断垂直方向上可否向上移动
@@ -56,7 +56,7 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
             }
         };
@@ -127,7 +127,7 @@ public class LoadMoreAdapter extends RecyclerView.Adapter {
     public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-        if (null != layoutParams && layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
+        if (layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
             if (holder.getLayoutPosition() + 1 == getItemCount()) {
                 StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) layoutParams;
                 params.setFullSpan(true);

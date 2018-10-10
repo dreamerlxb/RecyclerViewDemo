@@ -153,7 +153,7 @@ public class StickySectionDecorFragment extends SupportFragment {
         Call<List<MarkType>> call = markTypeService.getMarkTypes("{\"order\": [\"typeGroupId\", \"id\"]}");
         call.enqueue(new Callback<List<MarkType>>() {
             @Override
-            public void onResponse(Call<List<MarkType>> call, Response<List<MarkType>> response) {
+            public void onResponse(@NonNull Call<List<MarkType>> call, @NonNull Response<List<MarkType>> response) {
                 Log.i("==Success==", "return:" + response.toString());
                 sections = new ArrayList<MarkType>();
                 items = new ArrayList<MarkType>();
@@ -186,7 +186,7 @@ public class StickySectionDecorFragment extends SupportFragment {
             }
 
             @Override
-            public void onFailure(Call<List<MarkType>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<MarkType>> call, @NonNull Throwable t) {
                 Log.i("==Error==", "return:" + t.toString());
             }
         });

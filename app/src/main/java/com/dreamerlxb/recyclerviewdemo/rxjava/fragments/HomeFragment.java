@@ -22,6 +22,7 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -70,7 +71,7 @@ public class HomeFragment extends SupportFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Flowable.interval(1, TimeUnit.MILLISECONDS)
+        Disposable subscribe = Flowable.interval(1, TimeUnit.MILLISECONDS)
                 .onBackpressureDrop() //onBackpressureDrop 一定要放在 interval 后面否则不会生效
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())

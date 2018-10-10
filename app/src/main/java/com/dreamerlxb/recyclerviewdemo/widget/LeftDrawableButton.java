@@ -59,8 +59,9 @@ public class LeftDrawableButton extends AppCompatButton {
     }
 
     public void setText(String text){
-        if(text.equals(getText().toString()))
+        if(text.equals(getText().toString())) {
             return;
+        }
         super.setText(text);
         requestLayout();
     }

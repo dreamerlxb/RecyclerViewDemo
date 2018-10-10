@@ -93,7 +93,7 @@ public class MainFragment extends SupportFragment {
         });
 
         mainRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        mainRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mainRv.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
         mainAdapter = new MainAdapter(items);
 
         mainAdapter.setOnItemClickListener(new OnItemClickListener() {

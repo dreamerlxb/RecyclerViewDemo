@@ -107,8 +107,9 @@ public class ExpandableAdapter extends RecyclerView.Adapter {
     @Override
     public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
+
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-        if (null != layoutParams && layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
+        if (layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
             int layoutPos = holder.getLayoutPosition();
             if (isSection(layoutPos)) {
                 StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) layoutParams;

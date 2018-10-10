@@ -85,7 +85,7 @@ public class ExpandableSectionFragment extends SupportFragment {
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
 
         ExpandableAdapter expandableAdapter = new ExpandableAdapter(getContext(), MyData.getExpandableSectionData());
         recyclerView.setAdapter(expandableAdapter);

@@ -51,14 +51,14 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
 
     public void setText(@IdRes int viewId, CharSequence text) {
         View v = getView(viewId);
-        if (v != null && v instanceof TextView) {
+        if (v instanceof TextView) {
             ((TextView)v).setText(text);
         }
     }
 
     public void setText(@IdRes int viewId, @StringRes int stringRes) {
         View v = getView(viewId);
-        if (v != null && v instanceof TextView) {
+        if (v instanceof TextView) {
             ((TextView)v).setText(stringRes);
         }
     }
