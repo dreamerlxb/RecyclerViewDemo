@@ -71,17 +71,6 @@ public class HomeFragment extends SupportFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Disposable subscribe = Flowable.interval(1, TimeUnit.MILLISECONDS)
-                .onBackpressureDrop() //onBackpressureDrop 一定要放在 interval 后面否则不会生效
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.newThread())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        Thread.sleep(1000);
-                        Log.i("zhao", "onNext: " + aLong);
-                    }
-                });
 
         Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override

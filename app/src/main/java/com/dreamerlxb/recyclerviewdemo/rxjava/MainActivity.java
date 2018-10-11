@@ -14,7 +14,7 @@ public class MainActivity extends SupportActivity {
         setContentView(R.layout.activity_test_rxjava);
 
         if (findFragment(MainFragment.class) == null) {
-            loadRootFragment(R.id.content, MainFragment.newInstance("", ""));
+            loadRootFragment(R.id.content, MainFragment.newInstance());
         }
     }
 }

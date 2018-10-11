@@ -1,6 +1,7 @@
 package com.dreamerlxb.recyclerviewdemo.rxjava;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,12 +30,6 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 public class MainFragment extends SupportFragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
     static List<String> items = new ArrayList<>();
 
     static {
@@ -47,14 +42,11 @@ public class MainFragment extends SupportFragment {
     private MainAdapter mainAdapter;
 
     public MainFragment() {
-        // Required empty public constructor
     }
 
-    public static MainFragment newInstance(String param1, String param2) {
+    public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,8 +55,6 @@ public class MainFragment extends SupportFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -99,7 +89,8 @@ public class MainFragment extends SupportFragment {
         mainAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                Intent i = new Intent(getContext(), LifecycleTestActivity.class);
+                startActivity(i);
             }
         });
 

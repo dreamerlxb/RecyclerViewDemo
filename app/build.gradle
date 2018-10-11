@@ -38,6 +38,15 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
 
+//    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
+//    implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.2'
+//    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
+//    implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:2.2.2'
+//    implementation 'android.arch.lifecycle:runtime:1.1.1'
+
+    api 'com.uber.autodispose:autodispose-android:0.8.0'
+    api 'com.uber.autodispose:autodispose-android-archcomponents:0.8.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

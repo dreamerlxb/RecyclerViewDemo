@@ -25,7 +25,8 @@
         <activity android:name=".lottie.MainActivity" />
         <activity android:name=".rv.MainActivity" />
         <activity android:name=".notifications.MainActivity" />
-        <activity android:name=".editor.MainActivity"></activity>
+        <activity android:name=".editor.MainActivity" />
+        <activity android:name=".rxjava.LifecycleTestActivity"></activity>
     </application>
 
 </manifest>
